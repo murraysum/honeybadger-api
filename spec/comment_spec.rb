@@ -47,11 +47,14 @@ describe Honeybadger::Read::Comment do
   describe "find" do
     before :all do
       @attributes = FactoryGirl.attributes_for(:comment)
+      @project_id = 1
+      @fault_id = 2
+      @comment_id = 3
     end
     
     it "should map the attributes to a new comment instance" do
       client_stub = stub('client')
-      client_stub.expects(:get).returns(@attributes)
+      client_stub.expects(:get).with("projects/#{@project_id}/faults/#{@fault_id}/comments/#{@comment_id}").returns(@attributes)
       Honeybadger::Read.stubs(:client).returns(client_stub)
       Honeybadger::Read::Comment.expects(:map).with(@attributes).once
       Honeybadger::Read::Comment.find(@project_id, @fault_id, @comment_id)

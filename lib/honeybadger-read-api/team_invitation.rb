@@ -17,7 +17,7 @@ module Honeybadger
       end
 
       def self.all(team_id)
-
+        raise Exception.new("Not implemented")
       end
 
       def self.find(team_id, team_invitation_id)

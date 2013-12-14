@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :owner, :class => Honeybadger::Read::Owner do
+  factory :user, :class => Honeybadger::Read::User do
     name "Tom Smith"
     email "tom.smith@example.com"
 

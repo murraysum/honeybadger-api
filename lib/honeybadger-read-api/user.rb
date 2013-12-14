@@ -1,6 +1,6 @@
 module Honeybadger
   module Read
-    class Owner
+    class User
 
       attr_reader :name, :email
 
@@ -10,7 +10,7 @@ module Honeybadger
       end
 
       def self.map(instance)
-        Owner.new(
+        User.new(
           instance[:name],
           instance[:email]
         )

@@ -25,7 +25,7 @@ module Honeybadger
       end
 
       def self.map(instance)
-        owner = Owner.map(instance[:owner])
+        owner = User.map(instance[:owner])
         team_members = TeamMember.map_collection(instance[:members])
         
         # TODO create a project mapping

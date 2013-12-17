@@ -6,6 +6,8 @@ require "honeybadger-read-api/api"
 require "honeybadger-read-api/deploy"
 require "honeybadger-read-api/team_invitation"
 require "honeybadger-read-api/comment"
+require "honeybadger-read-api/integration"
+require "honeybadger-read-api/project"
 
 module Honeybadger
   module Read

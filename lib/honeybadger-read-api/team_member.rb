@@ -2,18 +2,25 @@ module Honeybadger
   module Read
     class TeamMember
 
-      attr_reader :id, :name, :email, :admin, :created_at
+      attr_reader :id, :admin, :created_at
 
       def initialize(opts)
         @id = opts[:id]
-        @name = opts[:name]
-        @email = opts[:email]
+        @user = User.new(opts[:name], opts[:email])
         @admin = opts[:admin]
         @created_at = opts[:created_at]
       end
 
       def admin?
         @admin
+      end
+
+      def name
+        @user.name
+      end
+
+      def email
+        @user.email
       end
 
       def self.all(team_id)

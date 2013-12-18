@@ -7,7 +7,7 @@ FactoryGirl.define do
     created_at Date.today
 
     initialize_with do
-      new(id, name, email, admin, created_at)
+      new(attributes)
     end
   end
 

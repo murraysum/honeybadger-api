@@ -7,7 +7,7 @@ describe Honeybadger::Read::TeamMember do
       @team_member = FactoryGirl.build :normal_team_member
     end
 
-    it "should have a identifier" do
+    it "should have an identifier" do
       @team_member.id.should == 1 
     end
 
@@ -33,7 +33,7 @@ describe Honeybadger::Read::TeamMember do
       @team_member = FactoryGirl.build :admin_team_member
     end
 
-    it "should have a identifier" do
+    it "should have an identifier" do
       @team_member.id.should == 1 
     end
 
@@ -72,38 +72,5 @@ describe Honeybadger::Read::TeamMember do
 
   describe "find" do
     it "is pending"
-  end
-
-  describe "initializing a list of team members by mapping attributes" do
-    before :all do
-      @attribute_collection = [
-        FactoryGirl.attributes_for(:normal_team_member),
-        FactoryGirl.attributes_for(:admin_team_member)
-      ]
-    end
-
-    it "should map the attributes to a list of team member instances" do
-      Honeybadger::Read::TeamMember.expects(:map).with(@attribute_collection.first).once
-      Honeybadger::Read::TeamMember.expects(:map).with(@attribute_collection.last).once
-      Honeybadger::Read::TeamMember.map_collection(@attribute_collection)
-    end
-  end
-
-  describe "initializing a new team member by mapping attributes" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:normal_team_member)
-      @team_member = Honeybadger::Read::TeamMember.map(@attributes)
-    end
-
-    it "should map the attributes to new team member instance" do
-      Honeybadger::Read::TeamMember.expects(:new).with(
-        @attributes[:id],
-        @attributes[:name],
-        @attributes[:email],
-        @attributes[:admin],
-        @attributes[:created_at]
-      ).once
-      Honeybadger::Read::TeamMember.map(@attributes)
-    end
   end
 end

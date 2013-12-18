@@ -4,15 +4,15 @@ module Honeybadger
 
       attr_reader :id, :fault_id, :event, :source, :notices_count, :author, :body, :created_at
 
-      def initialize(id, fault_id, event, source, notices_count, author, body, created_at)
-        @id = id
-        @fault_id = fault_id
-        @event = event
-        @source = source
-        @notices_count = notices_count
-        @author = author
-        @body = body
-        @created_at = created_at 
+      def initialize(opts)
+        @id = opts[:id]
+        @fault_id = opts[:fault_id]
+        @event = opts[:event]
+        @source = opts[:source]
+        @notices_count = opts[:notices_count]
+        @author = opts[:author]
+        @body = opts[:body]
+        @created_at = opts[:created_at]
       end
 
       def self.all(project_id, fault_id)
@@ -21,24 +21,7 @@ module Honeybadger
 
       def self.find(project_id, fault_id, comment_id)
         instance = Honeybadger::Read.client.get("projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}")
-        map(instance)
-      end
-
-      def self.map_collection(collection)
-        collection.collect { |instance| map(instance) }
-      end
-
-      def self.map(instance)
-        Comment.new(
-          instance[:id],
-          instance[:fault_id],
-          instance[:event],
-          instance[:source],
-          instance[:notices_count],
-          instance[:author],
-          instance[:body],
-          instance[:created_at]
-        )
+        Comment.new(instance)
       end
     end
   end

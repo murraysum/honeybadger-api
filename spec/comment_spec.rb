@@ -50,49 +50,15 @@ describe Honeybadger::Read::Comment do
       @project_id = 1
       @fault_id = 2
       @comment_id = 3
-    end
-    
-    it "should map the attributes to a new comment instance" do
+
       client_stub = stub('client')
       client_stub.expects(:get).with("projects/#{@project_id}/faults/#{@fault_id}/comments/#{@comment_id}").returns(@attributes)
       Honeybadger::Read.stubs(:client).returns(client_stub)
-      Honeybadger::Read::Comment.expects(:map).with(@attributes).once
+    end
+
+    it "should map the attributes to a new comment instance" do
+      Honeybadger::Read::Comment.expects(:new).with(@attributes).once
       Honeybadger::Read::Comment.find(@project_id, @fault_id, @comment_id)
-    end
-  end
-
-  describe "initializing a list of comments by mapping attributes" do
-    before :all do
-      @attribute_collection = [
-        FactoryGirl.attributes_for(:comment),
-        FactoryGirl.attributes_for(:comment)
-      ]
-    end
-
-    it "should map the attributes to a list of comment instances" do
-      Honeybadger::Read::Comment.expects(:map).with(@attribute_collection.first).once
-      Honeybadger::Read::Comment.expects(:map).with(@attribute_collection.last).once
-      Honeybadger::Read::Comment.map_collection(@attribute_collection)
-    end
-  end
-
-  describe "initializing a new comment by mapping attributes" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:comment)
-    end
-
-    it "should map the attributes to new comment instance" do
-      Honeybadger::Read::Comment.expects(:new).with(
-        @attributes[:id],
-        @attributes[:fault_id],
-        @attributes[:event],
-        @attributes[:source],
-        @attributes[:notices_count],
-        @attributes[:author],
-        @attributes[:body],
-        @attributes[:created_at]
-      ).once
-      Honeybadger::Read::Comment.map(@attributes)
     end
   end
 end

@@ -9,7 +9,7 @@ FactoryGirl.define do
     created_at Date.today
 
     initialize_with do
-      new(id, project_id, repository, revision, environment, local_username, created_at)
+      new(attributes)
     end
   end
 end

@@ -14,18 +14,4 @@ describe Honeybadger::Read::User do
       @user.email.should == "tom.smith@example.com"
     end
   end
-
-  describe "initializing a new user by mapping attributes" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for :user
-    end
-
-    it "should map the attributes to new user instance" do
-      Honeybadger::Read::User.expects(:new).with(
-        @attributes[:name],
-        @attributes[:email]
-      ).once
-      Honeybadger::Read::User.map(@attributes)
-    end
-  end
 end

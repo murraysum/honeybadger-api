@@ -8,8 +8,8 @@ module Honeybadger
       def initialize(opts)
         @id = opts[:id]
         @name = opts[:name]
-        @owner = User.map(opts[:owner])
-        # @users = opts[:users].collect { |user| User.map(user) }
+        @owner = User.new(opts[:owner][:name], opts[:owner][:email])
+        # @users = opts[:users].collect { |user| User.new(user[:name], user[:email]) }
         @token = opts[:token]
         @environments = opts[:environments]
         @active = opts[:active]

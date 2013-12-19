@@ -8,13 +8,6 @@ module Honeybadger
         @name = name
         @email = email
       end
-
-      def self.map(instance)
-        User.new(
-          instance[:name],
-          instance[:email]
-        )
-      end
     end
   end
 end

@@ -8,7 +8,47 @@ describe Honeybadger::Read::TeamInvitation do
     end
 
     it "should have a identifier" do
-      @team_invitation.id.should == 1 
+      @team_invitation.id.should == 1
+    end
+
+    it "should have a token" do
+      @team_invitation.token.should == "e62394d2"
+    end
+
+    it "should have an email" do
+      @team_invitation.email.should == "invitation@example.com"
+    end
+
+    it "should have an accepted at date" do
+      @team_invitation.accepted_at.should == Date.today
+    end
+
+    it "should have a created at date" do
+      @team_invitation.created_at.should == Date.today
+    end
+
+    it "should have a invitation message" do
+      @team_invitation.message.should == "Come join in"
+    end
+  end
+
+  describe "an admin team invitation" do
+    before :each do
+      @team_invitation = FactoryGirl.build :admin_team_invitation
+    end
+
+    it "should identify as an admin invitation" do
+      @team_invitation.admin?.should be_true
+    end
+  end
+
+  describe "a normal team invitation" do
+    before :each do
+      @team_invitation = FactoryGirl.build :team_invitation
+    end
+
+    it "should not identify as an admin invitation" do
+      @team_invitation.admin?.should be_false
     end
   end
 
@@ -17,42 +57,19 @@ describe Honeybadger::Read::TeamInvitation do
   end
 
   describe "find" do
-    it "is pending"
-  end
-
-  describe "initializing a list of deploys by mapping attributes" do
-    before :all do
-      @attribute_collection = [
-        FactoryGirl.attributes_for(:team_invitation),
-        FactoryGirl.attributes_for(:team_invitation)
-      ]
-    end
-
-    it "should map the attributes to a list of team invitation instances" do
-      Honeybadger::Read::TeamInvitation.expects(:map).with(@attribute_collection.first).once
-      Honeybadger::Read::TeamInvitation.expects(:map).with(@attribute_collection.last).once
-      Honeybadger::Read::TeamInvitation.map_collection(@attribute_collection)
-    end
-  end
-
-  describe "initializing a new team invitation by mapping attributes" do
-    before :all do
+    before :each do
       @attributes = FactoryGirl.attributes_for(:team_invitation)
+      @team_id = 1
+      @team_invitation_id = 2
+
+      client_stub = stub('client')
+      client_stub.expects(:get).with("teams/#{@team_id}/team_invitations/#{@team_invitation_id}").returns(@attributes)
+      Honeybadger::Read.stubs(:client).returns(client_stub)
     end
 
-    it "should map the attributes to new team member instance" do
-      Honeybadger::Read::TeamInvitation.expects(:new).with(
-        @attributes[:id],
-        @attributes[:token],
-        @attributes[:email],
-        @attributes[:created_by],
-        @attributes[:accepted_by],
-        @attributes[:admin],
-        @attributes[:created_at],
-        @attributes[:accepted_at],
-        @attributes[:message]
-      ).once
-      Honeybadger::Read::TeamInvitation.map(@attributes)
+    it "should find a team invitation" do
+      Honeybadger::Read::TeamInvitation.expects(:new).with(@attributes).once
+      Honeybadger::Read::TeamInvitation.find(@team_id, @team_invitation_id)
     end
   end
 end

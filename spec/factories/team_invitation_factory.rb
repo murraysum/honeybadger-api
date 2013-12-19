@@ -11,23 +11,17 @@ FactoryGirl.define do
       :email => "invitation.accepted@example.com",
       :name => "John Accepted"
     })
-    admin true
+    admin false
     accepted_at Date.today
     created_at Date.today
-    message "Come join in" 
+    message "Come join in"
 
     initialize_with do
-      new(
-        id,
-        token,
-        email,
-        created_by,
-        accepted_by,
-        admin,
-        created_at,
-        accepted_at,
-        message
-      )
+      new(attributes)
     end
+  end
+
+  factory :admin_team_invitation, :parent => :team_invitation do
+    admin true
   end
 end

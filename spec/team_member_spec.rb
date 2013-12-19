@@ -71,6 +71,19 @@ describe Honeybadger::Read::TeamMember do
   end
 
   describe "find" do
-    it "is pending"
+    before :all do
+      @attributes = FactoryGirl.attributes_for(:normal_team_member)
+      @team_id = 1
+      @team_member_id = 2
+
+      client_stub = stub('client')
+      client_stub.expects(:get).with("teams/#{@team_id}/team_members/#{@team_member_id}").returns(@attributes)
+      Honeybadger::Read.stubs(:client).returns(client_stub)
+    end
+
+    it "should find a team member" do
+      Honeybadger::Read::TeamMember.expects(:new).with(@attributes).once
+      Honeybadger::Read::TeamMember.find(@team_id, @team_member_id)
+    end
   end
 end

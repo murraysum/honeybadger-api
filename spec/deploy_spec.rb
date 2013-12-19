@@ -41,6 +41,19 @@ describe Honeybadger::Read::Deploy do
   end
 
   describe "find" do
-    it "is pending"
+    before :all do
+      @attributes = FactoryGirl.attributes_for(:deploy)
+      @project_id = 1
+      @deploy_id = 2
+
+      client_stub = stub('client')
+      client_stub.expects(:get).with("projects/#{@project_id}/deploys/#{@deploy_id}").returns(@attributes)
+      Honeybadger::Read.stubs(:client).returns(client_stub)
+    end
+
+    it "should find a deploy" do
+      Honeybadger::Read::Deploy.expects(:new).with(@attributes).once
+      Honeybadger::Read::Deploy.find(@project_id, @deploy_id)
+    end
   end
 end

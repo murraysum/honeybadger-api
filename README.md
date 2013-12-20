@@ -18,7 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'honeybadger-read-api'
+
+# Configure you access token
+Honeybadger::Read.configure do |c|
+  c.access_token = 'xxxxxxxxxxxxxxxxxxxx'
+end
+
+# Find a project
+project_id = 1
+Honeybadger::Read::Project.find(project_id)
+
+```
 
 ## Contributing
 

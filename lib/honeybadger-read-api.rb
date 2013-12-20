@@ -1,3 +1,5 @@
+require 'date'
+
 require "honeybadger-read-api/version"
 require "honeybadger-read-api/configuration"
 require "honeybadger-read-api/team"

@@ -8,7 +8,7 @@ module Honeybadger
         @id = opts[:id]
         @user = User.new(opts[:name], opts[:email])
         @admin = opts[:admin]
-        @created_at = opts[:created_at]
+        @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
       def admin?

@@ -36,7 +36,7 @@ describe Honeybadger::Read::Comment do
     end
 
     it "should have the date the comment was created" do
-      @comment.created_at.should == Date.today
+      @comment.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
     end
   end
 

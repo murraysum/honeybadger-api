@@ -4,7 +4,7 @@ FactoryGirl.define do
     name "John Smith"
     email "john.smith@example.com"
     admin false
-    created_at Date.today
+    created_at "2012-01-01T00:01:00Z"
 
     initialize_with do
       new(attributes)

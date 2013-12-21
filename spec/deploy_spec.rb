@@ -32,7 +32,7 @@ describe Honeybadger::Read::Deploy do
     end
 
     it "should have the date the deploy was made" do
-      @deploy.created_at.should == Date.today
+      @deploy.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
     end
   end
 

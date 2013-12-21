@@ -24,7 +24,7 @@ describe Honeybadger::Read::TeamMember do
     end
 
     it "should have the date the team member was created" do
-      @team_member.created_at.should == Date.today
+      @team_member.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
     end
   end
 
@@ -50,7 +50,7 @@ describe Honeybadger::Read::TeamMember do
     end
 
     it "should have the date the team member was created" do
-      @team_member.created_at.should == Date.today
+      @team_member.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
     end
   end
 

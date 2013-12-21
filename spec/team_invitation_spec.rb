@@ -19,12 +19,12 @@ describe Honeybadger::Read::TeamInvitation do
       @team_invitation.email.should == "invitation@example.com"
     end
 
-    it "should have an accepted at date" do
-      @team_invitation.accepted_at.should == Date.today
+    it "should have an accepted_at date" do
+      @team_invitation.accepted_at.should == DateTime.parse("2012-01-01T00:02:00Z")
     end
 
-    it "should have a created at date" do
-      @team_invitation.created_at.should == Date.today
+    it "should have a created_at date" do
+      @team_invitation.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
     end
 
     it "should have a invitation message" do

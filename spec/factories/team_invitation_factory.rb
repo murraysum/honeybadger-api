@@ -12,8 +12,8 @@ FactoryGirl.define do
       :name => "John Accepted"
     })
     admin false
-    accepted_at Date.today
-    created_at Date.today
+    accepted_at "2012-01-01T00:02:00Z"
+    created_at "2012-01-01T00:01:00Z"
     message "Come join in"
 
     initialize_with do

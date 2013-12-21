@@ -12,7 +12,7 @@ module Honeybadger
         @notices_count = opts[:notices_count]
         @author = opts[:author]
         @body = opts[:body]
-        @created_at = opts[:created_at]
+        @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
       def self.all(project_id, fault_id)

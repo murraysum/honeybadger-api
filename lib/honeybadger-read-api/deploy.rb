@@ -11,7 +11,7 @@ module Honeybadger
         @revision = opts[:revision]
         @environment = opts[:environment]
         @local_username = opts[:local_username]
-        @created_at = opts[:created_at]
+        @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
       def self.all(project_id)

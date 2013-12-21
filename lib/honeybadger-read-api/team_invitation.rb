@@ -11,8 +11,8 @@ module Honeybadger
         @created_by = User.new(opts[:created_by][:name], opts[:created_by][:email])
         @accepted_by = User.new(opts[:accepted_by][:name], opts[:accepted_by][:email])
         @admin = opts[:admin]
-        @created_at = opts[:created_at]
-        @accepted_at = opts[:accepted_at]
+        @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
+        @accepted_at = opts[:accepted_at].nil? ? nil : DateTime.parse(opts[:accepted_at])
         @message = opts[:message]
       end
 

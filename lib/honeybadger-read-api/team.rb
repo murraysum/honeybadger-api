@@ -8,6 +8,7 @@ module Honeybadger
         @id = opts[:id]
         @name = opts[:name]
         @owner = User.new(opts[:owner][:name], opts[:owner][:email])
+        # TODO map all the team members and projects to objects
         @team_members = opts[:members]
         @projects = opts[:projects]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])

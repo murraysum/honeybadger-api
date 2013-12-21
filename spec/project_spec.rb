@@ -20,9 +20,11 @@ describe Honeybadger::Read::Project do
       @project.owner.email.should == "tom.smith@example.com"
     end
 
-    # it "should have users" do
-    #   @project.users.should == 1
-    # end
+    it "should have users" do
+      @project.users.length.should == 1
+      @project.users.first.name.should == "user"
+      @project.users.first.email.should == "user@example.com"
+    end
 
     it "should have a token" do
       @project.token.should == "098sflj2"

@@ -9,7 +9,7 @@ module Honeybadger
         @id = opts[:id]
         @name = opts[:name]
         @owner = User.new(opts[:owner][:name], opts[:owner][:email])
-        # @users = opts[:users].collect { |user| User.new(user[:name], user[:email]) }
+        @users = opts[:users].collect { |user| User.new(user[:name], user[:email]) }
         @token = opts[:token]
         @environments = opts[:environments]
         @active = opts[:active]

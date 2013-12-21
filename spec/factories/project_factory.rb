@@ -4,6 +4,12 @@ FactoryGirl.define do
     name "Rails"
     association :owner, :factory => :user, :strategy => :attributes_for
     # users
+    users [
+      {
+        :email => "user@example.com",
+        :name => "user"
+      }
+    ]
     token "098sflj2"
     environments ["development", "production"]
     active true

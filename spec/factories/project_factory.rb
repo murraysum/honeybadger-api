@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :project, :class => Honeybadger::Read::Project do
     id 1
     name "Rails"
-    # owner
     association :owner, :factory => :user, :strategy => :attributes_for
     # users
     token "098sflj2"

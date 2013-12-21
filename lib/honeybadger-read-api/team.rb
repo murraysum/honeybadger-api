@@ -2,13 +2,15 @@ module Honeybadger
   module Read
     class Team
 
-      def initialize(id, name, owner, team_members, projects, created_at) 
-        @id = id
-        @name = name
-        @owner = owner
-        @team_members = team_members
-        @projects = projects
-        @created_at = created_at
+      attr_reader :id, :name, :owner, :team_members, :projects, :created_at
+
+      def initialize(opts)
+        @id = opts[:id]
+        @name = opts[:name]
+        @owner = User.new(opts[:owner][:name], opts[:owner][:email])
+        @team_members = opts[:members]
+        @projects = opts[:projects]
+        @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
       def self.all
@@ -17,28 +19,7 @@ module Honeybadger
 
       def self.find(team_id)
         instance = Honeybadger::Read.client.get("teams/#{team_id}")
-        map(instance)
-      end
-
-      def self.map_collection(collection)
-        collection.collect { |instance| map(instance) }
-      end
-
-      def self.map(instance)
-        owner = User.new(instance[:owner][:name], instance[:owner][:email])
-        team_members = TeamMember.map_collection(instance[:members])
-        
-        # TODO create a project mapping
-        projects = instance[:projects]
-
-        Team.new(
-          instance[:id],
-          instance[:name],
-          owner,
-          team_members,
-          projects,
-          instance[:created_at]
-        )
+        Team.new(instance)
       end
     end
   end

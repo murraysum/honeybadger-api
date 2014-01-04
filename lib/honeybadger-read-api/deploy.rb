@@ -15,7 +15,8 @@ module Honeybadger
       end
 
       def self.all(project_id)
-        raise Exception.new("Not implemented")
+        response = Honeybadger::Read.client.get("projects/#{project_id}/deploys")
+        Honeybadger::Read::Response.new(self, response)
       end
 
       def self.find(project_id, deploy_id)

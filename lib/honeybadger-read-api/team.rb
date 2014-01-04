@@ -15,7 +15,8 @@ module Honeybadger
       end
 
       def self.all
-        raise Exception.new("Not implemented")
+        response = Honeybadger::Read.client.get("teams")
+        Honeybadger::Read::Response.new(self, response)
       end
 
       def self.find(team_id)

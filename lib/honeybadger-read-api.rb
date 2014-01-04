@@ -12,6 +12,7 @@ require "honeybadger-read-api/team_invitation"
 require "honeybadger-read-api/comment"
 require "honeybadger-read-api/integration"
 require "honeybadger-read-api/project"
+require "honeybadger-read-api/fault"
 
 module Honeybadger
   module Read

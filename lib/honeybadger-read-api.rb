@@ -13,6 +13,7 @@ require "honeybadger-read-api/comment"
 require "honeybadger-read-api/integration"
 require "honeybadger-read-api/project"
 require "honeybadger-read-api/fault"
+require "honeybadger-read-api/notice"
 
 module Honeybadger
   module Read

@@ -20,7 +20,7 @@ module Honeybadger
       private
 
       def request(path, options = {})
-        uri = URI.join(Api.site, path, "?auth_token=#{access_token}")
+        uri = build_uri(path, options)
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -30,7 +30,17 @@ module Honeybadger
         response = http.request(request)
       end
 
-      def self.site
+      def build_uri(path, opts)
+        uri = URI.join(host, path)
+        uri.query = build_query(opts)
+        uri
+      end
+
+      def build_query(opts)
+        URI.encode_www_form(opts.merge({:auth_token => access_token}))
+      end
+
+      def host
         "https://api.honeybadger.io/v1/"
       end
     end

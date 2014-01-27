@@ -1,6 +1,6 @@
-# Honeybadger::Read::Api
+# Honeybadger Read Api Ruby Library
 
-TODO: Write a gem description
+This is the Read API gem for easily pulling your data out of [Honeybadger](https://www.honeybadger.io/).
 
 ## Installation
 
@@ -18,14 +18,23 @@ Or install it yourself as:
 
 ## Usage
 
+Firstly require the library:
+
 ```
 require 'honeybadger-read-api'
+```
 
-# Configure you access token
+Then configure your personal API access token. Your personal API access token can be found on your [personal profile page](https://www.honeybadger.io/users/edit):
+
+```
 Honeybadger::Read.configure do |c|
   c.access_token = 'xxxxxxxxxxxxxxxxxxxx'
 end
+```
 
+After you have setup your API access token you can now make requests:
+
+```
 # Find a project
 project_id = 1
 Honeybadger::Read::Project.find(project_id)

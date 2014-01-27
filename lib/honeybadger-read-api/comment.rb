@@ -15,13 +15,25 @@ module Honeybadger
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
+      # Public: Find all comments on a fault for a project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Comment.all(project_id, fault_id)
+      #
       def self.all(project_id, fault_id)
-        response = Honeybadger::Read.client.get("projects/#{project_id}/faults/#{fault_id}/comments")
+        path = "projects/#{project_id}/faults/#{fault_id}/comments"
+        response = Honeybadger::Read.client.get(path)
         Honeybadger::Read::Response.new(self, response)
       end
 
+      # Public: Find a comment on a fault for a project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Comment.find(project_id, fault_id, comment_id)
+      #
       def self.find(project_id, fault_id, comment_id)
-        instance = Honeybadger::Read.client.get("projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}")
+        path = "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
+        instance = Honeybadger::Read.client.get(path)
         Comment.new(instance)
       end
     end

@@ -14,13 +14,25 @@ module Honeybadger
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
+      # Public: Find all deploys for a given project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Deploy.all(project_id)
+      #
       def self.all(project_id)
-        response = Honeybadger::Read.client.get("projects/#{project_id}/deploys")
+        path = "projects/#{project_id}/deploys"
+        response = Honeybadger::Read.client.get(path)
         Honeybadger::Read::Response.new(self, response)
       end
 
+      # Public: Find a deploy for a given project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Deploy.find(project_id, deploy_id)
+      #
       def self.find(project_id, deploy_id)
-        instance = Honeybadger::Read.client.get("projects/#{project_id}/deploys/#{deploy_id}")
+        path = "projects/#{project_id}/deploys/#{deploy_id}"
+        instance = Honeybadger::Read.client.get(path)
         Deploy.new(instance)
       end
     end

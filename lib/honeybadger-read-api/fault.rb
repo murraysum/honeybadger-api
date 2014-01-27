@@ -21,7 +21,7 @@ module Honeybadger
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
-      # Public: Whether tha fault has been ignored.
+      # Public: Whether tha fault has been marked as ignored.
       def ignored?
         @ignored == true
       end
@@ -31,13 +31,25 @@ module Honeybadger
         @resolved == true
       end
 
+      # Public: Find all faults for a given project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Fault.all(project_id)
+      #
       def self.all(project_id)
-        response = Honeybadger::Read.client.get("projects/#{project_id}/faults")
+        path = "projects/#{project_id}/faults"
+        response = Honeybadger::Read.client.get(path)
         Honeybadger::Read::Response.new(self, response)
       end
 
+      # Public: Find a fault for a given project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Fault.find(project_id, fault_id)
+      #
       def self.find(project_id, fault_id)
-        instance = Honeybadger::Read.client.get("projects/#{project_id}/faults/#{fault_id}")
+        path = "projects/#{project_id}/faults/#{fault_id}"
+        instance = Honeybadger::Read.client.get(path)
         Fault.new(instance)
       end
     end

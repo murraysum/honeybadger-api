@@ -22,7 +22,7 @@ module Honeybadger
       def self.all(project_id)
         path = "projects/#{project_id}/deploys"
         response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Response.new(self, response)
+        Honeybadger::Read::Paginator.new(self, path, response)
       end
 
       # Public: Find a deploy for a given project.

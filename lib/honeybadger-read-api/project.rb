@@ -44,8 +44,9 @@ module Honeybadger
       end
 
       def self.all
-        response = Honeybadger::Read.client.get("projects")
-        Honeybadger::Read::Response.new(self, response)
+        path = "projects"
+        response = Honeybadger::Read.client.get(path)
+        Honeybadger::Read::Paginator.new(self, path, response)
       end
 
       def self.find(project_id)

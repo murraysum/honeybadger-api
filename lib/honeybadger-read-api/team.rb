@@ -15,8 +15,9 @@ module Honeybadger
       end
 
       def self.all
-        response = Honeybadger::Read.client.get("teams")
-        Honeybadger::Read::Response.new(self, response)
+        path = "teams"
+        response = Honeybadger::Read.client.get(path)
+        Honeybadger::Read::Paginator.new(self, path, response)
       end
 
       def self.find(team_id)

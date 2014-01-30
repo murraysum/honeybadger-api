@@ -36,10 +36,10 @@ module Honeybadger
       # Examples:
       #    Honeybadger::Read::Fault.all(project_id)
       #
-      def self.all(project_id)
+      def self.all(project_id, options = {})
         path = "projects/#{project_id}/faults"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Response.new(self, response)
+        response = Honeybadger::Read.client.get(path, options)
+        Honeybadger::Read::Paginator.new(self, path, response)
       end
 
       # Public: Find a fault for a given project.

@@ -23,7 +23,7 @@ module Honeybadger
       def self.all(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}/comments"
         response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Response.new(self, response)
+        Honeybadger::Read::Paginator.new(self, path, response)
       end
 
       # Public: Find a comment on a fault for a project.

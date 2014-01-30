@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Response do
+describe Honeybadger::Read::Paginator do
 
-  describe "initializing a new response" do
+  describe "initializing a new paginator" do
 
   end
   describe "next? and previous?" do
@@ -17,7 +17,7 @@ describe Honeybadger::Read::Response do
           :num_pages => 1,
           :results => []
         }
-        @response = Honeybadger::Read::Response.new(@klass, opts)
+        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
       end
 
       it "should not have a next page" do
@@ -36,7 +36,7 @@ describe Honeybadger::Read::Response do
           :num_pages => 2,
           :results => []
         }
-        @response = Honeybadger::Read::Response.new(@klass, opts)
+        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
       end
 
       it "should have a next page" do
@@ -55,7 +55,7 @@ describe Honeybadger::Read::Response do
           :num_pages => 2,
           :results => []
         }
-        @response = Honeybadger::Read::Response.new(@klass, opts)
+        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
       end
 
       it "should not have a next page" do
@@ -74,7 +74,7 @@ describe Honeybadger::Read::Response do
           :num_pages => 3,
           :results => []
         }
-        @response = Honeybadger::Read::Response.new(@klass, opts)
+        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
       end
 
       it "should have a next page" do

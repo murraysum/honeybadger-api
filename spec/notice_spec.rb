@@ -20,7 +20,7 @@ describe Honeybadger::Read::Notice do
     end
 
     it "should have an environment" do
-      @notice.environment.should == "development"
+      @notice.environment.should be_kind_of(Honeybadger::Read::Environment)
     end
 
     it "should have a request" do

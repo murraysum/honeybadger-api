@@ -9,7 +9,7 @@ module Honeybadger
         @project_id = opts[:project_id]
         @repository = opts[:repository]
         @revision = opts[:revision]
-        @environment = opts[:environment]
+        @environment = Environment.new(opts[:environment])
         @local_username = opts[:local_username]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end

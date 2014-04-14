@@ -7,7 +7,7 @@ module Honeybadger
       def initialize(opts)
         @id = opts[:id]
         @fault_id = opts[:fault_id]
-        @environment = opts[:environment]
+        @environment = Environment.new(opts[:environment])
         @message = opts[:message]
         @request = opts[:request]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])

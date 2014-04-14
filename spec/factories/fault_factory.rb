@@ -6,7 +6,7 @@ FactoryGirl.define do
     action "runtime_error"
     component "pages"
     message "This is a runtime error"
-    environment "development"
+    association :environment, :strategy => :attributes_for
     ignored false
     resolved false
     notices_count 7

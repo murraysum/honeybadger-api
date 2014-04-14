@@ -14,6 +14,7 @@ require "honeybadger-read-api/integration"
 require "honeybadger-read-api/project"
 require "honeybadger-read-api/fault"
 require "honeybadger-read-api/notice"
+require "honeybadger-read-api/environment"
 
 module Honeybadger
   module Read

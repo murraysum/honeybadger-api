@@ -31,7 +31,8 @@ describe Honeybadger::Read::Project do
     end
 
     it "should have a list of environments" do
-      @project.environments.should == ["development", "production"]
+      @project.environments.length.should == 1
+      @project.environments.first.should be_kind_of(Honeybadger::Read::Environment)
     end
 
     # it "should have a list of integrations" do

@@ -32,7 +32,7 @@ describe Honeybadger::Read::Fault do
     end
 
     it "should have an environment" do
-      @fault.environment.should == "development"
+      @fault.environment.should be_kind_of(Honeybadger::Read::Environment)
     end
 
     it "should have a notice count" do

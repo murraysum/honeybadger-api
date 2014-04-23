@@ -27,8 +27,10 @@ module Honeybadger
       end
 
       def self.find(team_id, team_invitation_id)
-        instance = Honeybadger::Read.client.get("teams/#{team_id}/team_invitations/#{team_invitation_id}")
-        TeamInvitation.new(instance)
+        Honeybadger::Read::Request.perform do |request|
+          request.path "teams/#{team_id}/team_invitations/#{team_invitation_id}"
+          request.handler { |response| TeamInvitation.new(response) }
+        end
       end
     end
   end

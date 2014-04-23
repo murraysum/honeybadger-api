@@ -30,8 +30,10 @@ module Honeybadger
       end
 
       def self.find(team_id, team_member_id)
-        instance = Honeybadger::Read.client.get("teams/#{team_id}/team_members/#{team_member_id}")
-        TeamMember.new(instance)
+        Honeybadger::Read::Request.perform do |request|
+          request.path "teams/#{team_id}/team_members/#{team_member_id}"
+          request.handler { |response| TeamMember.new(response) }
+        end
       end
     end
   end

@@ -31,9 +31,10 @@ module Honeybadger
       #    Honeybadger::Read::Deploy.find(project_id, deploy_id)
       #
       def self.find(project_id, deploy_id)
-        path = "projects/#{project_id}/deploys/#{deploy_id}"
-        instance = Honeybadger::Read.client.get(path)
-        Deploy.new(instance)
+        Honeybadger::Read::Request.perform do |request|
+          request.path "projects/#{project_id}/deploys/#{deploy_id}"
+          request.handler { |response| Deploy.new(response) }
+        end
       end
     end
   end

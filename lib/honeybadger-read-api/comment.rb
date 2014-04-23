@@ -32,9 +32,10 @@ module Honeybadger
       #    Honeybadger::Read::Comment.find(project_id, fault_id, comment_id)
       #
       def self.find(project_id, fault_id, comment_id)
-        path = "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
-        instance = Honeybadger::Read.client.get(path)
-        Comment.new(instance)
+        Honeybadger::Read::Request.perform do |request|
+          request.path "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
+          request.handler { |response| Comment.new(response) }
+        end
       end
     end
   end

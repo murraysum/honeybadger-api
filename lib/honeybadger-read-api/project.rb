@@ -52,8 +52,10 @@ module Honeybadger
       end
 
       def self.find(project_id)
-        instance = Honeybadger::Read.client.get("projects/#{project_id}")
-        Project.new(instance)
+        Honeybadger::Read::Request.perform do |request|
+          request.path "projects/#{project_id}"
+          request.handler { |response| Project.new(response) }
+        end
       end
     end
   end

@@ -24,7 +24,7 @@ describe Honeybadger::Read::Deploy do
     end
 
     it "should have a environment" do
-      @deploy.environment.should be_kind_of(Honeybadger::Read::Environment)
+      @deploy.environment.should == "production"
     end
 
     it "should have a local_username" do

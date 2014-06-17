@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class TeamInvitation
 
       attr_reader :id, :token, :email, :created_by, :accepted_by, :created_at, :accepted_at, :message
@@ -29,19 +29,19 @@ module Honeybadger
       # Public: Find all team invitations for a team.
       def self.all(team_id)
         path = "teams/#{team_id}/team_invitations"
-        Honeybadger::Read::Request.all(path, handler)
+        Honeybadger::Api::Request.all(path, handler)
       end
 
       # Public: Paginate all team invitations for a team.
       def self.paginate(team_id, filters = {})
         path = "teams/#{team_id}/team_invitations"
-        Honeybadger::Read::Request.paginate(path, handler, filters)
+        Honeybadger::Api::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a team invitation for a given team.
       def self.find(team_id, team_invitation_id)
         path = "teams/#{team_id}/team_invitations/#{team_invitation_id}"
-        Honeybadger::Read::Request.find(path, handler)
+        Honeybadger::Api::Request.find(path, handler)
       end
 
       # Internal: The handler used to build objects from API responses.

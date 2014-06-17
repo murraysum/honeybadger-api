@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :comment, :class => Honeybadger::Read::Comment do
+  factory :comment, :class => Honeybadger::Api::Comment do
     id 1
     fault_id 2
     event "an event"

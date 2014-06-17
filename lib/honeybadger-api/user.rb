@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class User
 
       attr_reader :name, :email

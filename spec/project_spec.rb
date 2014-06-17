@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Project do
+describe Honeybadger::Api::Project do
 
   describe "initializing a new project" do
     before :all do
@@ -32,7 +32,7 @@ describe Honeybadger::Read::Project do
 
     it "should have a list of environments" do
       @project.environments.length.should == 1
-      @project.environments.first.should be_kind_of(Honeybadger::Read::Environment)
+      @project.environments.first.should be_kind_of(Honeybadger::Api::Environment)
     end
 
     it "should have a fault count" do
@@ -112,12 +112,12 @@ describe Honeybadger::Read::Project do
     before :each do
       @path = "projects"
       @handler = Proc.new { |response| Project.new(response) }
-      Honeybadger::Read::Project.expects(:handler).returns(@handler)
+      Honeybadger::Api::Project.expects(:handler).returns(@handler)
     end
 
     it "should find all of the projects" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Project.all
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Project.all
     end
   end
 
@@ -126,12 +126,12 @@ describe Honeybadger::Read::Project do
       @path = "projects"
       @handler = Proc.new { |response| Project.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Project.expects(:handler).returns(@handler)
+      Honeybadger::Api::Project.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the projects" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Project.paginate(@filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Project.paginate(@filters)
     end
   end
 
@@ -140,12 +140,12 @@ describe Honeybadger::Read::Project do
       @project_id = 1
       @path = "projects/#{@project_id}"
       @handler = Proc.new { |response| Project.new(response) }
-      Honeybadger::Read::Project.expects(:handler).returns(@handler)
+      Honeybadger::Api::Project.expects(:handler).returns(@handler)
     end
 
     it "should find a project" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Project.find(@project_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Project.find(@project_id)
     end
   end
 end

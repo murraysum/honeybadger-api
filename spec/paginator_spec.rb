@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Paginator do
+describe Honeybadger::Api::Paginator do
 
   describe "initializing a new paginator" do
 
@@ -19,10 +19,10 @@ describe Honeybadger::Read::Paginator do
           :results => []
         }
         @client_stub.expects(:get).returns(opts)
-        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        Honeybadger::Api.stubs(:client).returns(@client_stub)
         handler = Proc.new { |response| Project.new(response) }
 
-        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
+        @paginator = Honeybadger::Api::Paginator.new("projects", {}, handler)
       end
 
       it "should not have a next page" do
@@ -42,10 +42,10 @@ describe Honeybadger::Read::Paginator do
           :results => []
         }
         @client_stub.expects(:get).returns(opts)
-        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        Honeybadger::Api.stubs(:client).returns(@client_stub)
         handler = Proc.new { |response| Project.new(response) }
 
-        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
+        @paginator = Honeybadger::Api::Paginator.new("projects", {}, handler)
       end
 
       it "should have a next page" do
@@ -65,10 +65,10 @@ describe Honeybadger::Read::Paginator do
           :results => []
         }
         @client_stub.expects(:get).returns(opts)
-        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        Honeybadger::Api.stubs(:client).returns(@client_stub)
         handler = Proc.new { |response| Project.new(response) }
 
-        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
+        @paginator = Honeybadger::Api::Paginator.new("projects", {}, handler)
       end
 
       it "should not have a next page" do
@@ -88,10 +88,10 @@ describe Honeybadger::Read::Paginator do
           :results => []
         }
         @client_stub.expects(:get).returns(opts)
-        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        Honeybadger::Api.stubs(:client).returns(@client_stub)
         handler = Proc.new { |response| Project.new(response) }
 
-        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
+        @paginator = Honeybadger::Api::Paginator.new("projects", {}, handler)
       end
 
       it "should have a next page" do

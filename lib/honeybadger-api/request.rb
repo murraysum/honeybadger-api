@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Request
 
       def initialize(path, handler, filters = {})
@@ -9,12 +9,12 @@ module Honeybadger
       end
 
       def self.all(path, handler)
-        request = Honeybadger::Read::Request.new(path, handler)
+        request = Honeybadger::Api::Request.new(path, handler)
         request.all
       end
 
       def all
-        paginator = Honeybadger::Read::Paginator.new(@path, @filters, @handler)
+        paginator = Honeybadger::Api::Paginator.new(@path, @filters, @handler)
         while paginator.next?
           paginator.next
         end
@@ -22,22 +22,22 @@ module Honeybadger
       end
 
       def self.find(path, handler)
-        request = Honeybadger::Read::Request.new(path, handler)
+        request = Honeybadger::Api::Request.new(path, handler)
         request.find
       end
 
       def find
-        response = Honeybadger::Read.client.get(@path)
+        response = Honeybadger::Api.client.get(@path)
         @handler.call(response)
       end
 
       def self.paginate(path, handler, filters)
-        request = Honeybadger::Read::Request.new(path, handler, filters)
+        request = Honeybadger::Api::Request.new(path, handler, filters)
         request.paginate
       end
 
       def paginate
-        Honeybadger::Read::Paginator.new(@path, @filters, @handler)
+        Honeybadger::Api::Paginator.new(@path, @filters, @handler)
       end
     end
   end

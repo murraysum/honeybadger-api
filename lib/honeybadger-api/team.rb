@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Team
 
       attr_reader :id, :name, :owner, :team_members, :projects, :created_at
@@ -20,17 +20,17 @@ module Honeybadger
 
       # Public: Find all of the teams.
       def self.all
-        Honeybadger::Read::Request.all("teams", handler)
+        Honeybadger::Api::Request.all("teams", handler)
       end
 
       # Public: Paginate all of the teams.
       def self.paginate(filters = {})
-        Honeybadger::Read::Request.paginate("teams", handler, filters)
+        Honeybadger::Api::Request.paginate("teams", handler, filters)
       end
 
       # Public: Find a team.
       def self.find(team_id)
-        Honeybadger::Read::Request.find("teams/#{team_id}", handler)
+        Honeybadger::Api::Request.find("teams/#{team_id}", handler)
       end
 
       # Internal: The handler used to build objects from API responses.

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :team, :class => Honeybadger::Read::Team do
+  factory :team, :class => Honeybadger::Api::Team do
     id 1
     name "team"
     association :owner, :factory => :user, :strategy => :attributes_for

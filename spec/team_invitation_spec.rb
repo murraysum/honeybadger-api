@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::TeamInvitation do
+describe Honeybadger::Api::TeamInvitation do
   
   describe "initializing a new team invitation" do
     before :all do
@@ -57,12 +57,12 @@ describe Honeybadger::Read::TeamInvitation do
       @team_id = 1
       @path = "teams/#{@team_id}/team_invitations"
       @handler = Proc.new { |response| TeamInvitation.new(response) }
-      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamInvitation.expects(:handler).returns(@handler)
     end
 
     it "should find all of the team invitations" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::TeamInvitation.all(@team_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::TeamInvitation.all(@team_id)
     end
   end
 
@@ -72,12 +72,12 @@ describe Honeybadger::Read::TeamInvitation do
       @path = "teams/#{@team_id}/team_invitations"
       @handler = Proc.new { |response| TeamInvitation.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamInvitation.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the team invitations" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::TeamInvitation.paginate(@team_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::TeamInvitation.paginate(@team_id, @filters)
     end
   end
 
@@ -87,12 +87,12 @@ describe Honeybadger::Read::TeamInvitation do
       @team_invitation_id = 2
       @path = "teams/#{@team_id}/team_invitations/#{@team_invitation_id}"
       @handler = Proc.new { |response| TeamInvitation.new(response) }
-      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamInvitation.expects(:handler).returns(@handler)
     end
 
     it "should find a team invitation" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::TeamInvitation.find(@team_id, @team_invitation_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::TeamInvitation.find(@team_id, @team_invitation_id)
     end
   end
 end

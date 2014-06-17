@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Team do
+describe Honeybadger::Api::Team do
 
   describe "initializing a new team" do
     before :all do
@@ -29,12 +29,12 @@ describe Honeybadger::Read::Team do
     before :each do
       @path = "teams"
       @handler = Proc.new { |response| Team.new(response) }
-      Honeybadger::Read::Team.expects(:handler).returns(@handler)
+      Honeybadger::Api::Team.expects(:handler).returns(@handler)
     end
 
     it "should find all of the teams" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Team.all
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Team.all
     end
   end
 
@@ -43,12 +43,12 @@ describe Honeybadger::Read::Team do
       @path = "teams"
       @handler = Proc.new { |response| Team.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Team.expects(:handler).returns(@handler)
+      Honeybadger::Api::Team.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the teams" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Team.paginate(@filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Team.paginate(@filters)
     end
   end
 
@@ -57,12 +57,12 @@ describe Honeybadger::Read::Team do
       @team_id = 1
       @path = "teams/#{@team_id}"
       @handler = Proc.new { |response| Team.new(response) }
-      Honeybadger::Read::Team.expects(:handler).returns(@handler)
+      Honeybadger::Api::Team.expects(:handler).returns(@handler)
     end
 
     it "should find a team" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Team.find(@team_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Team.find(@team_id)
     end
   end
 end

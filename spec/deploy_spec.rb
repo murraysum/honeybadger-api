@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Deploy do
+describe Honeybadger::Api::Deploy do
   
   describe "initializing a new deploy" do
     before :all do
@@ -16,7 +16,7 @@ describe Honeybadger::Read::Deploy do
     end
 
     it "should have a repository" do
-      @deploy.repository.should == "honeybadger-read-api"
+      @deploy.repository.should == "honeybadger-api"
     end
 
     it "should have a revision" do
@@ -41,12 +41,12 @@ describe Honeybadger::Read::Deploy do
       @project_id = 1
       @path = "projects/#{@project_id}/deploys"
       @handler = Proc.new { |response| Deploy.new(response) }
-      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
+      Honeybadger::Api::Deploy.expects(:handler).returns(@handler)
     end
 
     it "should find all of the deploys" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Deploy.all(@project_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Deploy.all(@project_id)
     end
   end
 
@@ -56,12 +56,12 @@ describe Honeybadger::Read::Deploy do
       @path = "projects/#{@project_id}/deploys"
       @handler = Proc.new { |response| Deploy.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
+      Honeybadger::Api::Deploy.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the deploys" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Deploy.paginate(@project_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Deploy.paginate(@project_id, @filters)
     end
   end
 
@@ -71,12 +71,12 @@ describe Honeybadger::Read::Deploy do
       @deploy_id = 2
       @path = "projects/#{@project_id}/deploys/#{@deploy_id}"
       @handler = Proc.new { |response| Deploy.new(response) }
-      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
+      Honeybadger::Api::Deploy.expects(:handler).returns(@handler)
     end
 
     it "should find a deploy" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Deploy.find(@project_id, @deploy_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Deploy.find(@project_id, @deploy_id)
     end
   end
 end

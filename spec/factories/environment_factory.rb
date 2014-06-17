@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :environment, :class => Honeybadger::Read::Environment do
+  factory :environment, :class => Honeybadger::Api::Environment do
     id 1
     name "production"
     project_id 2

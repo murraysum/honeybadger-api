@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::TeamMember do
+describe Honeybadger::Api::TeamMember do
 
   describe "initializing a new normal team member" do
     before :all do
@@ -71,12 +71,12 @@ describe Honeybadger::Read::TeamMember do
       @team_id = 1
       @path = "teams/#{@team_id}/team_members"
       @handler = Proc.new { |response| TeamMember.new(response) }
-      Honeybadger::Read::TeamMember.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamMember.expects(:handler).returns(@handler)
     end
 
     it "should find all of the team members" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::TeamMember.all(@team_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::TeamMember.all(@team_id)
     end
   end
 
@@ -86,12 +86,12 @@ describe Honeybadger::Read::TeamMember do
       @path = "teams/#{@team_id}/team_members"
       @handler = Proc.new { |response| TeamMember.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::TeamMember.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamMember.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the team members" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::TeamMember.paginate(@team_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::TeamMember.paginate(@team_id, @filters)
     end
   end
 
@@ -101,12 +101,12 @@ describe Honeybadger::Read::TeamMember do
       @team_member_id = 2
       @path = "teams/#{@team_id}/team_members/#{@team_member_id}"
       @handler = Proc.new { |response| TeamMember.new(response) }
-      Honeybadger::Read::TeamMember.expects(:handler).returns(@handler)
+      Honeybadger::Api::TeamMember.expects(:handler).returns(@handler)
     end
 
     it "should find a team member" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::TeamMember.find(@team_id, @team_member_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::TeamMember.find(@team_id, @team_member_id)
     end
   end
 end

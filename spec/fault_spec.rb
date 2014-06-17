@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Fault do
+describe Honeybadger::Api::Fault do
 
   describe "initializing a new comment" do
     before :all do
@@ -32,7 +32,7 @@ describe Honeybadger::Read::Fault do
     end
 
     it "should have an environment" do
-      @fault.environment.should be_kind_of(Honeybadger::Read::Environment)
+      @fault.environment.should be_kind_of(Honeybadger::Api::Environment)
     end
 
     it "should have a notice count" do
@@ -91,12 +91,12 @@ describe Honeybadger::Read::Fault do
       @project_id = 1
       @path = "projects/#{@project_id}/faults"
       @handler = Proc.new { |response| Fault.new(response) }
-      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
+      Honeybadger::Api::Fault.expects(:handler).returns(@handler)
     end
 
     it "should find all of the faults" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Fault.all(@project_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Fault.all(@project_id)
     end
   end
 
@@ -106,12 +106,12 @@ describe Honeybadger::Read::Fault do
       @path = "projects/#{@project_id}/faults"
       @handler = Proc.new { |response| Fault.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
+      Honeybadger::Api::Fault.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the faults" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Fault.paginate(@project_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Fault.paginate(@project_id, @filters)
     end
   end
 
@@ -121,12 +121,12 @@ describe Honeybadger::Read::Fault do
       @fault_id = 2
       @path = "projects/#{@project_id}/faults/#{@fault_id}"
       @handler = Proc.new { |response| Fault.new(response) }
-      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
+      Honeybadger::Api::Fault.expects(:handler).returns(@handler)
     end
 
     it "should find a fault" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Fault.find(@project_id, @fault_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Fault.find(@project_id, @fault_id)
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::User do
+describe Honeybadger::Api::User do
   describe "initializing a new user" do
     before :all do
       @user = FactoryGirl.build :user

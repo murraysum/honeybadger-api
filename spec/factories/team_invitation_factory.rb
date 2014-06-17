@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :team_invitation, :class => Honeybadger::Read::TeamInvitation do
+  factory :team_invitation, :class => Honeybadger::Api::TeamInvitation do
     id 1
     token "e62394d2"
     email "invitation@example.com"

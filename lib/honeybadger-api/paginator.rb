@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Paginator
 
       attr_reader :current_page, :total_page_count
@@ -12,7 +12,7 @@ module Honeybadger
         @collection = {}
 
         @filters.merge!({ :page => 1 }) if !@filters.has_key?(:page)
-        response = Honeybadger::Read.client.get(@path, @filters)
+        response = Honeybadger::Api.client.get(@path, @filters)
 
         @current_page = response[:current_page]
         @total_page_count = response[:num_pages]
@@ -32,7 +32,7 @@ module Honeybadger
 
       def next
         if next?
-          response = Honeybadger::Read.client.get(@path, @filters.merge({:page => current_page + 1}))
+          response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page + 1}))
 
           @current_page = response[:current_page]
           @total_page_count = response[:num_pages]
@@ -49,7 +49,7 @@ module Honeybadger
 
       def previous
         if previous?
-          response = Honeybadger::Read.client.get(@path, @filters.merge({:page => current_page - 1}))
+          response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page - 1}))
 
           @current_page = response[:current_page]
           @total_page_count = response[:num_pages]

@@ -1,4 +1,4 @@
-describe Honeybadger::Read::Environment do
+describe Honeybadger::Api::Environment do
   describe "initializing a new environment" do
     before :all do
       @environment = FactoryGirl.build :environment

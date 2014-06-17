@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Comment do
+describe Honeybadger::Api::Comment do
 
   describe "initializing a new comment" do
     before :all do
@@ -46,12 +46,12 @@ describe Honeybadger::Read::Comment do
       @fault_id = 2
       @path = "projects/#{@project_id}/faults/#{@fault_id}/comments"
       @handler = Proc.new { |response| Comment.new(response) }
-      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
+      Honeybadger::Api::Comment.expects(:handler).returns(@handler)
     end
 
     it "should find all of the comments" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Comment.all(@project_id, @fault_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Comment.all(@project_id, @fault_id)
     end
   end
 
@@ -62,12 +62,12 @@ describe Honeybadger::Read::Comment do
       @path = "projects/#{@project_id}/faults/#{@fault_id}/comments"
       @handler = Proc.new { |response| Comment.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
+      Honeybadger::Api::Comment.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the comments" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Comment.paginate(@project_id, @fault_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Comment.paginate(@project_id, @fault_id, @filters)
     end
   end
 
@@ -78,12 +78,12 @@ describe Honeybadger::Read::Comment do
       @comment_id = 3
       @path = "projects/#{@project_id}/faults/#{@fault_id}/comments/#{@comment_id}"
       @handler = Proc.new { |response| Comment.new(response) }
-      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
+      Honeybadger::Api::Comment.expects(:handler).returns(@handler)
     end
 
     it "should find a comment" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Comment.find(@project_id, @fault_id, @comment_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Comment.find(@project_id, @fault_id, @comment_id)
     end
   end
 end

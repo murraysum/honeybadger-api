@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Honeybadger::Read::Notice do
+describe Honeybadger::Api::Notice do
 
   describe "initializing a new comment" do
     before :all do
@@ -20,7 +20,7 @@ describe Honeybadger::Read::Notice do
     end
 
     it "should have an environment" do
-      @notice.environment.should be_kind_of(Honeybadger::Read::Environment)
+      @notice.environment.should be_kind_of(Honeybadger::Api::Environment)
     end
 
     it "should have a request" do
@@ -38,12 +38,12 @@ describe Honeybadger::Read::Notice do
       @fault_id = 2
       @path = "projects/#{@project_id}/faults/#{@fault_id}/notices"
       @handler = Proc.new { |response| Notice.new(response) }
-      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
+      Honeybadger::Api::Notice.expects(:handler).returns(@handler)
     end
 
     it "should find all of the notices" do
-      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
-      Honeybadger::Read::Notice.all(@project_id, @fault_id)
+      Honeybadger::Api::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Api::Notice.all(@project_id, @fault_id)
     end
   end
 
@@ -54,12 +54,12 @@ describe Honeybadger::Read::Notice do
       @path = "projects/#{@project_id}/faults/#{@fault_id}/notices"
       @handler = Proc.new { |response| Notice.new(response) }
       @filters = { some_filter: 'value' }
-      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
+      Honeybadger::Api::Notice.expects(:handler).returns(@handler)
     end
 
     it "should paginate all of the notices" do
-      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
-      Honeybadger::Read::Notice.paginate(@project_id, @fault_id, @filters)
+      Honeybadger::Api::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Api::Notice.paginate(@project_id, @fault_id, @filters)
     end
   end
 
@@ -70,12 +70,12 @@ describe Honeybadger::Read::Notice do
       @notice_id = 3
       @path = "projects/#{@project_id}/faults/#{@fault_id}/notices/#{@notice_id}"
       @handler = Proc.new { |response| Notice.new(response) }
-      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
+      Honeybadger::Api::Notice.expects(:handler).returns(@handler)
     end
 
     it "should find a notice" do
-      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Read::Notice.find(@project_id, @fault_id, @notice_id)
+      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
+      Honeybadger::Api::Notice.find(@project_id, @fault_id, @notice_id)
     end
   end
 end

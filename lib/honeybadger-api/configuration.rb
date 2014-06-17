@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Configuration
 
       attr_accessor :access_token

@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Comment
 
       attr_reader :id, :fault_id, :event, :source, :notices_count, :author, :body, :created_at
@@ -23,19 +23,19 @@ module Honeybadger
       # Public: Find all comments on a fault for a project.
       def self.all(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}/comments"
-        Honeybadger::Read::Request.all(path, handler)
+        Honeybadger::Api::Request.all(path, handler)
       end
 
       # Public: Paginate all comments on a fault for a project
       def self.paginate(project_id, fault_id, filters = {})
         path = "projects/#{project_id}/faults/#{fault_id}/comments"
-        Honeybadger::Read::Request.paginate(path, handler, filters)
+        Honeybadger::Api::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a comment on a fault for a project.
       def self.find(project_id, fault_id, comment_id)
         path = "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
-        Honeybadger::Read::Request.find(path, handler)
+        Honeybadger::Api::Request.find(path, handler)
       end
 
       # Internal: The handler used to build objects from API responses.

@@ -25,6 +25,7 @@ module Honeybadger
         Honeybadger::Read::Request.find("teams/#{team_id}", handler)
       end
 
+      # Internal: The handler used to build objects from API responses.
       def self.handler
         Proc.new { |response| Team.new(response) }
       end

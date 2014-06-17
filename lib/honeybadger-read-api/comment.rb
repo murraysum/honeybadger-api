@@ -45,6 +45,7 @@ module Honeybadger
         Honeybadger::Read::Request.find(path, handler)
       end
 
+      # Internal: The handler used to build objects from API responses.
       def self.handler
         Proc.new { |response| Comment.new(response) }
       end

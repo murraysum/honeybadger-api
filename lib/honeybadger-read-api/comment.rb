@@ -22,8 +22,17 @@ module Honeybadger
       #
       def self.all(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}/comments"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all(path, handler)
+      end
+
+      # Public: Paginate all comments on a fault for a project
+      #
+      # Examples:
+      #     Honeybadger::Read::Comment.paginate(project_id, fault_id, :page => 10)
+      #
+      def self.paginate(project_id, fault_id, filters = {})
+        path = "projects/#{project_id}/faults/#{fault_id}/comments"
+        Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a comment on a fault for a project.
@@ -32,10 +41,12 @@ module Honeybadger
       #    Honeybadger::Read::Comment.find(project_id, fault_id, comment_id)
       #
       def self.find(project_id, fault_id, comment_id)
-        Honeybadger::Read::Request.perform do |request|
-          request.path "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
-          request.handler { |response| Comment.new(response) }
-        end
+        path = "projects/#{project_id}/faults/#{fault_id}/comments/#{comment_id}"
+        Honeybadger::Read::Request.find(path, handler)
+      end
+
+      def self.handler
+        Proc.new { |response| Comment.new(response) }
       end
     end
   end

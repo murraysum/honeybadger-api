@@ -87,22 +87,45 @@ describe Honeybadger::Read::Fault do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @project_id = 1
+      @path = "projects/#{@project_id}/faults"
+      @handler = Proc.new { |response| Fault.new(response) }
+      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the faults" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::Fault.all(@project_id)
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @project_id = 1
+      @path = "projects/#{@project_id}/faults"
+      @handler = Proc.new { |response| Fault.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the faults" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::Fault.paginate(@project_id, @filters)
+    end
   end
 
   describe "find" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:fault)
-      @project_id = 2
-      @fault_id = 1
-
-      client_stub = stub('client')
-      client_stub.expects(:get).with("projects/#{@project_id}/faults/#{@fault_id}").returns(@attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+    before :each do
+      @project_id = 1
+      @fault_id = 2
+      @path = "projects/#{@project_id}/faults/#{@fault_id}"
+      @handler = Proc.new { |response| Fault.new(response) }
+      Honeybadger::Read::Fault.expects(:handler).returns(@handler)
     end
 
     it "should find a fault" do
-      Honeybadger::Read::Fault.expects(:new).with(@attributes).once
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::Fault.find(@project_id, @fault_id)
     end
   end

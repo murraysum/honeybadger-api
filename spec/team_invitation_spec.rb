@@ -53,22 +53,45 @@ describe Honeybadger::Read::TeamInvitation do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @team_id = 1
+      @path = "teams/#{@team_id}/team_invitations"
+      @handler = Proc.new { |response| TeamInvitation.new(response) }
+      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the team invitations" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::TeamInvitation.all(@team_id)
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @team_id = 1
+      @path = "teams/#{@team_id}/team_invitations"
+      @handler = Proc.new { |response| TeamInvitation.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the team invitations" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::TeamInvitation.paginate(@team_id, @filters)
+    end
   end
 
   describe "find" do
     before :each do
-      @attributes = FactoryGirl.attributes_for(:team_invitation)
       @team_id = 1
       @team_invitation_id = 2
-
-      client_stub = stub('client')
-      client_stub.expects(:get).with("teams/#{@team_id}/team_invitations/#{@team_invitation_id}").returns(@attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+      @path = "teams/#{@team_id}/team_invitations/#{@team_invitation_id}"
+      @handler = Proc.new { |response| TeamInvitation.new(response) }
+      Honeybadger::Read::TeamInvitation.expects(:handler).returns(@handler)
     end
 
     it "should find a team invitation" do
-      Honeybadger::Read::TeamInvitation.expects(:new).with(@attributes).once
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::TeamInvitation.find(@team_id, @team_invitation_id)
     end
   end

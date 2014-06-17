@@ -8,23 +8,25 @@ module Honeybadger
         @id = opts[:id]
         @name = opts[:name]
         @owner = User.new(opts[:owner][:name], opts[:owner][:email])
-        # TODO map all the team members and projects to objects
-        @team_members = opts[:members]
-        @projects = opts[:projects]
+        @team_members = opts[:members].collect { |m| TeamMember.new(m) }
+        @projects = opts[:projects].collect { |p| Project.new(p) }
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
       def self.all
-        path = "teams"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all("teams", handler)
+      end
+
+      def self.paginate(filters = {})
+        Honeybadger::Read::Request.paginate("teams", handler, filters)
       end
 
       def self.find(team_id)
-        Honeybadger::Read::Request.perform do |request|
-          request.path "teams/#{team_id}"
-          request.handler { |response| Team.new(response) }
-        end
+        Honeybadger::Read::Request.find("teams/#{team_id}", handler)
+      end
+
+      def self.handler
+        Proc.new { |response| Team.new(response) }
       end
     end
   end

@@ -21,8 +21,17 @@ module Honeybadger
       #
       def self.all(project_id)
         path = "projects/#{project_id}/deploys"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all(path, handler)
+      end
+
+      # Public: Paginate all deploys for a given project
+      #
+      # Examples:
+      #     Honeybadger::Read::Deploy.paginate(project_id, :page => 10)
+      #
+      def self.paginate(project_id, filters = {})
+        path = "projects/#{project_id}/deploys"
+        Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a deploy for a given project.
@@ -31,10 +40,12 @@ module Honeybadger
       #    Honeybadger::Read::Deploy.find(project_id, deploy_id)
       #
       def self.find(project_id, deploy_id)
-        Honeybadger::Read::Request.perform do |request|
-          request.path "projects/#{project_id}/deploys/#{deploy_id}"
-          request.handler { |response| Deploy.new(response) }
-        end
+        path = "projects/#{project_id}/deploys/#{deploy_id}"
+        Honeybadger::Read::Request.find(path, handler)
+      end
+
+      def self.handler
+        Proc.new { |response| Deploy.new(response) }
       end
     end
   end

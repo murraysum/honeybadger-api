@@ -22,15 +22,21 @@ module Honeybadger
 
       def self.all(team_id)
         path = "teams/#{team_id}/team_invitations"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all(path, handler)
+      end
+
+      def self.paginate(team_id, filters = {})
+        path = "teams/#{team_id}/team_invitations"
+        Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       def self.find(team_id, team_invitation_id)
-        Honeybadger::Read::Request.perform do |request|
-          request.path "teams/#{team_id}/team_invitations/#{team_invitation_id}"
-          request.handler { |response| TeamInvitation.new(response) }
-        end
+        path = "teams/#{team_id}/team_invitations/#{team_invitation_id}"
+        Honeybadger::Read::Request.find(path, handler)
+      end
+
+      def self.handler
+        Proc.new { |response| TeamInvitation.new(response) }
       end
     end
   end

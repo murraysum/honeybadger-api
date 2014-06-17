@@ -41,23 +41,48 @@ describe Honeybadger::Read::Comment do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @project_id = 1
+      @fault_id = 2
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/comments"
+      @handler = Proc.new { |response| Comment.new(response) }
+      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the comments" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::Comment.all(@project_id, @fault_id)
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @project_id = 1
+      @fault_id = 2
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/comments"
+      @handler = Proc.new { |response| Comment.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the comments" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::Comment.paginate(@project_id, @fault_id, @filters)
+    end
   end
 
   describe "find" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:comment)
+    before :each do
       @project_id = 1
       @fault_id = 2
       @comment_id = 3
-
-      client_stub = stub('client')
-      client_stub.expects(:get).with("projects/#{@project_id}/faults/#{@fault_id}/comments/#{@comment_id}").returns(@attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/comments/#{@comment_id}"
+      @handler = Proc.new { |response| Comment.new(response) }
+      Honeybadger::Read::Comment.expects(:handler).returns(@handler)
     end
 
-    it "should map the attributes to a new comment instance" do
-      Honeybadger::Read::Comment.expects(:new).with(@attributes).once
+    it "should find a comment" do
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::Comment.find(@project_id, @fault_id, @comment_id)
     end
   end

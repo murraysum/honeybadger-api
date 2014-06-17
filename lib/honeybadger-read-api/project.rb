@@ -42,22 +42,27 @@ module Honeybadger
         @active == false
       end
 
+      # Public: Whether links are public.
       def public_links?
         @disable_public_links == false
       end
 
+      # Public: Whether links are private.
       def private_links?
         @disable_public_links == true
       end
 
+      # Public: Find all of the project.
       def self.all
         Honeybadger::Read::Request.all("projects", handler)
       end
 
+      # Public: Paginate all of the project.
       def self.paginate(filters = {})
         Honeybadger::Read::Request.paginate("projects", handler, filters)
       end
 
+      # Public: Find a project.
       def self.find(project_id)
         Honeybadger::Read::Request.find("projects/#{project_id}", handler)
       end

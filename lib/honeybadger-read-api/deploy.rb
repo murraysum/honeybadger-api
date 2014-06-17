@@ -20,30 +20,18 @@ module Honeybadger
       end
 
       # Public: Find all deploys for a given project.
-      #
-      # Examples:
-      #    Honeybadger::Read::Deploy.all(project_id)
-      #
       def self.all(project_id)
         path = "projects/#{project_id}/deploys"
         Honeybadger::Read::Request.all(path, handler)
       end
 
       # Public: Paginate all deploys for a given project
-      #
-      # Examples:
-      #     Honeybadger::Read::Deploy.paginate(project_id, :page => 10)
-      #
       def self.paginate(project_id, filters = {})
         path = "projects/#{project_id}/deploys"
         Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a deploy for a given project.
-      #
-      # Examples:
-      #    Honeybadger::Read::Deploy.find(project_id, deploy_id)
-      #
       def self.find(project_id, deploy_id)
         path = "projects/#{project_id}/deploys/#{deploy_id}"
         Honeybadger::Read::Request.find(path, handler)

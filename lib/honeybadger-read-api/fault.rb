@@ -37,30 +37,18 @@ module Honeybadger
       end
 
       # Public: Find all faults for a given project.
-      #
-      # Examples:
-      #    Honeybadger::Read::Fault.all(project_id)
-      #
       def self.all(project_id)
         path  = "projects/#{project_id}/faults"
         Honeybadger::Read::Request.all(path, handler)
       end
 
       # Public: Paginate all faults for a given project.
-      #
-      # Examples:
-      #    Honeybadger::Read::Fault.paginate(project_id, :page => 10)
-      #
       def self.paginate(project_id, filters = {})
         path  = "projects/#{project_id}/faults"
         Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a fault for a given project.
-      #
-      # Examples:
-      #    Honeybadger::Read::Fault.find(project_id, fault_id)
-      #
       def self.find(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}"
         Honeybadger::Read::Request.find(path, handler)

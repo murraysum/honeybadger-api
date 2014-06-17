@@ -21,25 +21,30 @@ module Honeybadger
         @message = opts[:message]
       end
 
+      # Public: Whether the invitation was for an admin user.
       def admin?
         @admin
       end
 
+      # Public: Find all team invitations for a team.
       def self.all(team_id)
         path = "teams/#{team_id}/team_invitations"
         Honeybadger::Read::Request.all(path, handler)
       end
 
+      # Public: Paginate all team invitations for a team.
       def self.paginate(team_id, filters = {})
         path = "teams/#{team_id}/team_invitations"
         Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
+      # Public: Find a team invitation for a given team.
       def self.find(team_id, team_invitation_id)
         path = "teams/#{team_id}/team_invitations/#{team_invitation_id}"
         Honeybadger::Read::Request.find(path, handler)
       end
 
+      # Internal: The handler used to build objects from API responses.
       def self.handler
         Proc.new { |response| TeamInvitation.new(response) }
       end

@@ -18,16 +18,19 @@ module Honeybadger
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 
+      # Public: Find all notices on a fault for a project.
       def self.all(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}/notices"
         Honeybadger::Read::Request.all(path, handler)
       end
 
+      # Public: Paginate all notices on a fault for a project
       def self.paginate(project_id, fault_id, filters = {})
         path = "projects/#{project_id}/faults/#{fault_id}/notices"
         Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
+      # Public: Find a notice on a fault for a project.
       def self.find(project_id, fault_id, notice_id)
         path = "projects/#{project_id}/faults/#{fault_id}/notices/#{notice_id}"
         Honeybadger::Read::Request.find(path, handler)

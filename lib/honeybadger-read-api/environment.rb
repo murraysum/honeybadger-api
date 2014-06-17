@@ -4,7 +4,11 @@ module Honeybadger
 
       attr_reader :id, :name, :project_id, :updated_at, :created_at
 
-      # Public: Initialize a new environment
+      # Public: Build a new instance of Environment
+      #
+      # opts - A Hash of attributes to initialize a Environment
+      #
+      # Returns a new Environment
       def initialize(opts)
         @id = opts[:id]
         @name = opts[:name]

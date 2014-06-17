@@ -16,7 +16,6 @@ FactoryGirl.define do
     ]
     active true
     disable_public_links false
-    # integrations
     fault_count 14
     unresolved_fault_count 1
     last_notice_at "2012-01-01T00:02:00Z"

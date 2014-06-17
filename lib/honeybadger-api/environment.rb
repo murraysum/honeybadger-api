@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Environment
 
       attr_reader :id, :name, :project_id, :updated_at, :created_at

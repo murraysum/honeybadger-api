@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :fault, :class => Honeybadger::Read::Fault do
+  factory :fault, :class => Honeybadger::Api::Fault do
     id 1
     project_id 2
     klass "RuntimeError"

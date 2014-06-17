@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :normal_team_member, :class => Honeybadger::Read::TeamMember do
+  factory :normal_team_member, :class => Honeybadger::Api::TeamMember do
     id 1
     name "John Smith"
     email "john.smith@example.com"

@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :deploy, :class => Honeybadger::Read::Deploy do
+  factory :deploy, :class => Honeybadger::Api::Deploy do
     id 1
     project_id 2
-    repository "honeybadger-read-api"
+    repository "honeybadger-api"
     revision "11111"
     environment "production"
     local_username "deploy"

@@ -1,5 +1,5 @@
 module Honeybadger
-  module Read
+  module Api
     class Fault
 
       attr_reader :id, :project_id, :klass, :action, :component, :message,
@@ -39,19 +39,19 @@ module Honeybadger
       # Public: Find all faults for a given project.
       def self.all(project_id)
         path  = "projects/#{project_id}/faults"
-        Honeybadger::Read::Request.all(path, handler)
+        Honeybadger::Api::Request.all(path, handler)
       end
 
       # Public: Paginate all faults for a given project.
       def self.paginate(project_id, filters = {})
         path  = "projects/#{project_id}/faults"
-        Honeybadger::Read::Request.paginate(path, handler, filters)
+        Honeybadger::Api::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a fault for a given project.
       def self.find(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}"
-        Honeybadger::Read::Request.find(path, handler)
+        Honeybadger::Api::Request.find(path, handler)
       end
 
       # Internal: The handler used to build objects from API responses.

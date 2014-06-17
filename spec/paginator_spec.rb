@@ -5,9 +5,10 @@ describe Honeybadger::Read::Paginator do
   describe "initializing a new paginator" do
 
   end
+
   describe "next? and previous?" do
     before :all do
-      @klass = Honeybadger::Read::Project
+      @client_stub = stub('client')
     end
 
     describe "when there is one page" do
@@ -17,15 +18,19 @@ describe Honeybadger::Read::Paginator do
           :num_pages => 1,
           :results => []
         }
-        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
+        @client_stub.expects(:get).returns(opts)
+        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        handler = Proc.new { |response| Project.new(response) }
+
+        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
       end
 
       it "should not have a next page" do
-        @response.next?.should be_false
+        @paginator.next?.should be_false
       end
 
       it "should not have a previous page" do
-        @response.previous?.should be_false
+        @paginator.previous?.should be_false
       end
     end
 
@@ -36,15 +41,19 @@ describe Honeybadger::Read::Paginator do
           :num_pages => 2,
           :results => []
         }
-        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
+        @client_stub.expects(:get).returns(opts)
+        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        handler = Proc.new { |response| Project.new(response) }
+
+        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
       end
 
       it "should have a next page" do
-        @response.next?.should be_true
+        @paginator.next?.should be_true
       end
 
       it "should not have a previous page" do
-        @response.previous?.should be_false
+        @paginator.previous?.should be_false
       end
     end
 
@@ -55,15 +64,19 @@ describe Honeybadger::Read::Paginator do
           :num_pages => 2,
           :results => []
         }
-        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
+        @client_stub.expects(:get).returns(opts)
+        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        handler = Proc.new { |response| Project.new(response) }
+
+        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
       end
 
       it "should not have a next page" do
-        @response.next?.should be_false
+        @paginator.next?.should be_false
       end
 
       it "should have a previous page" do
-        @response.previous?.should be_true
+        @paginator.previous?.should be_true
       end
     end
 
@@ -74,15 +87,19 @@ describe Honeybadger::Read::Paginator do
           :num_pages => 3,
           :results => []
         }
-        @response = Honeybadger::Read::Paginator.new(@klass, "path", opts)
+        @client_stub.expects(:get).returns(opts)
+        Honeybadger::Read.stubs(:client).returns(@client_stub)
+        handler = Proc.new { |response| Project.new(response) }
+
+        @paginator = Honeybadger::Read::Paginator.new("projects", {}, handler)
       end
 
       it "should have a next page" do
-        @response.next?.should be_true
+        @paginator.next?.should be_true
       end
 
       it "should have a previous page" do
-        @response.previous?.should be_true
+        @paginator.previous?.should be_true
       end
     end
   end

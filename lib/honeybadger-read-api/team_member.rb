@@ -25,13 +25,21 @@ module Honeybadger
 
       def self.all(team_id)
         path = "teams/#{team_id}/team_members"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all(path, handler)
+      end
+
+      def self.paginate(team_id, filters = {})
+        path = "teams/#{team_id}/team_members"
+        Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       def self.find(team_id, team_member_id)
-        instance = Honeybadger::Read.client.get("teams/#{team_id}/team_members/#{team_member_id}")
-        TeamMember.new(instance)
+        path = "teams/#{team_id}/team_members/#{team_member_id}"
+        Honeybadger::Read::Request.find(path, handler)
+      end
+
+      def self.handler
+        Proc.new { |response| TeamMember.new(response) }
       end
     end
   end

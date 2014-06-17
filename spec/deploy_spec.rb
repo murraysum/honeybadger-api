@@ -24,7 +24,7 @@ describe Honeybadger::Read::Deploy do
     end
 
     it "should have a environment" do
-      @deploy.environment.should be_kind_of(Honeybadger::Read::Environment)
+      @deploy.environment.should == "production"
     end
 
     it "should have a local_username" do
@@ -37,22 +37,45 @@ describe Honeybadger::Read::Deploy do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @project_id = 1
+      @path = "projects/#{@project_id}/deploys"
+      @handler = Proc.new { |response| Deploy.new(response) }
+      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the deploys" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::Deploy.all(@project_id)
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @project_id = 1
+      @path = "projects/#{@project_id}/deploys"
+      @handler = Proc.new { |response| Deploy.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the deploys" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::Deploy.paginate(@project_id, @filters)
+    end
   end
 
   describe "find" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:deploy)
+    before :each do
       @project_id = 1
       @deploy_id = 2
-
-      client_stub = stub('client')
-      client_stub.expects(:get).with("projects/#{@project_id}/deploys/#{@deploy_id}").returns(@attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+      @path = "projects/#{@project_id}/deploys/#{@deploy_id}"
+      @handler = Proc.new { |response| Deploy.new(response) }
+      Honeybadger::Read::Deploy.expects(:handler).returns(@handler)
     end
 
     it "should find a deploy" do
-      Honeybadger::Read::Deploy.expects(:new).with(@attributes).once
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::Deploy.find(@project_id, @deploy_id)
     end
   end

@@ -3,6 +3,7 @@ require 'date'
 require "honeybadger-read-api/version"
 require "honeybadger-read-api/configuration"
 require "honeybadger-read-api/paginator"
+require "honeybadger-read-api/request"
 require "honeybadger-read-api/team"
 require "honeybadger-read-api/team_member"
 require "honeybadger-read-api/user"

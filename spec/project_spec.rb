@@ -113,21 +113,42 @@ describe Honeybadger::Read::Project do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @path = "projects"
+      @handler = Proc.new { |response| Project.new(response) }
+      Honeybadger::Read::Project.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the projects" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::Project.all
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @path = "projects"
+      @handler = Proc.new { |response| Project.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::Project.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the projects" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::Project.paginate(@filters)
+    end
   end
 
   describe "find" do
     before :each do
-      @project_attributes = FactoryGirl.attributes_for(:project)
-      @project_id = @project_attributes[:id]
-
-      client_stub = stub('client')
-      client_stub.expects(:get).with("projects/#{@project_id}").returns(@project_attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+      @project_id = 1
+      @path = "projects/#{@project_id}"
+      @handler = Proc.new { |response| Project.new(response) }
+      Honeybadger::Read::Project.expects(:handler).returns(@handler)
     end
 
     it "should find a project" do
-      Honeybadger::Read::Project.expects(:new).with(@project_attributes).once
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::Project.find(@project_id)
     end
   end

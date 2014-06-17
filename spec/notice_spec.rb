@@ -33,22 +33,48 @@ describe Honeybadger::Read::Notice do
   end
 
   describe "all" do
-    it "is pending"
+    before :each do
+      @project_id = 1
+      @fault_id = 2
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/notices"
+      @handler = Proc.new { |response| Notice.new(response) }
+      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
+    end
+
+    it "should find all of the notices" do
+      Honeybadger::Read::Request.expects(:all).with(@path, @handler).once
+      Honeybadger::Read::Notice.all(@project_id, @fault_id)
+    end
+  end
+
+  describe "paginate" do
+    before :each do
+      @project_id = 1
+      @fault_id = 2
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/notices"
+      @handler = Proc.new { |response| Notice.new(response) }
+      @filters = { some_filter: 'value' }
+      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
+    end
+
+    it "should paginate all of the notices" do
+      Honeybadger::Read::Request.expects(:paginate).with(@path, @handler, @filters).once
+      Honeybadger::Read::Notice.paginate(@project_id, @fault_id, @filters)
+    end
   end
 
   describe "find" do
-    before :all do
-      @attributes = FactoryGirl.attributes_for(:notice)
-      @project_id = 3
+    before :each do
+      @project_id = 1
       @fault_id = 2
-      @notice_id = 1
-      client_stub = stub('client')
-      client_stub.expects(:get).with("projects/#{@project_id}/faults/#{@fault_id}/notices/#{@notice_id}").returns(@attributes)
-      Honeybadger::Read.stubs(:client).returns(client_stub)
+      @notice_id = 3
+      @path = "projects/#{@project_id}/faults/#{@fault_id}/notices/#{@notice_id}"
+      @handler = Proc.new { |response| Notice.new(response) }
+      Honeybadger::Read::Notice.expects(:handler).returns(@handler)
     end
 
-    it "should find a fault" do
-      Honeybadger::Read::Notice.expects(:new).with(@attributes).once
+    it "should find a notice" do
+      Honeybadger::Read::Request.expects(:find).with(@path, @handler).once
       Honeybadger::Read::Notice.find(@project_id, @fault_id, @notice_id)
     end
   end

@@ -46,14 +46,19 @@ module Honeybadger
       end
 
       def self.all
-        path = "projects"
-        response = Honeybadger::Read.client.get(path)
-        Honeybadger::Read::Paginator.new(self, path, response)
+        Honeybadger::Read::Request.all("projects", handler)
+      end
+
+      def self.paginate(filters = {})
+        Honeybadger::Read::Request.paginate("projects", handler, filters)
       end
 
       def self.find(project_id)
-        instance = Honeybadger::Read.client.get("projects/#{project_id}")
-        Project.new(instance)
+        Honeybadger::Read::Request.find("projects/#{project_id}", handler)
+      end
+
+      def self.handler
+        Proc.new { |response| Project.new(response) }
       end
     end
   end

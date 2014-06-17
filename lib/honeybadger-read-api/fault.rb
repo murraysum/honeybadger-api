@@ -36,10 +36,19 @@ module Honeybadger
       # Examples:
       #    Honeybadger::Read::Fault.all(project_id)
       #
-      def self.all(project_id, options = {})
-        path = "projects/#{project_id}/faults"
-        response = Honeybadger::Read.client.get(path, options)
-        Honeybadger::Read::Paginator.new(self, path, response)
+      def self.all(project_id)
+        path  = "projects/#{project_id}/faults"
+        Honeybadger::Read::Request.all(path, handler)
+      end
+
+      # Public: Paginate all faults for a given project.
+      #
+      # Examples:
+      #    Honeybadger::Read::Fault.paginate(project_id, :page => 10)
+      #
+      def self.paginate(project_id, filters = {})
+        path  = "projects/#{project_id}/faults"
+        Honeybadger::Read::Request.paginate(path, handler, filters)
       end
 
       # Public: Find a fault for a given project.
@@ -49,8 +58,11 @@ module Honeybadger
       #
       def self.find(project_id, fault_id)
         path = "projects/#{project_id}/faults/#{fault_id}"
-        instance = Honeybadger::Read.client.get(path)
-        Fault.new(instance)
+        Honeybadger::Read::Request.find(path, handler)
+      end
+
+      def self.handler
+        Proc.new { |response| Fault.new(response) }
       end
     end
   end

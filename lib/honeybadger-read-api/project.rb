@@ -2,7 +2,7 @@ module Honeybadger
   module Read
     class Project
 
-      attr_reader :id, :name, :owner, :users, :token, :environments, :integrations,
+      attr_reader :id, :name, :owner, :users, :token, :environments,
         :fault_count, :unresolved_fault_count, :last_notice_at, :created_at
 
       # Public: Build a new instance of Project
@@ -21,11 +21,6 @@ module Honeybadger
         end
         @active = opts[:active]
         @disable_public_links = opts[:disable_public_links]
-        # @integrations = [].tap do |integrations|
-        #   integrations.push Integration.new("Github", opts[:github_project])
-        #   integrations.push Integration.new("Pivotal", opts[:pivotal_project_id])
-        #   integrations.push Integration.new("Asana", opts[:asana_workspace_id])
-        # end
         @fault_count = opts[:fault_count]
         @unresolved_fault_count = opts[:unresolved_fault_count]
         @last_notice_at = opts[:last_notice_at].nil? ? nil : DateTime.parse(opts[:last_notice_at])

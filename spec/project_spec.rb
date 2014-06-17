@@ -35,10 +35,6 @@ describe Honeybadger::Read::Project do
       @project.environments.first.should be_kind_of(Honeybadger::Read::Environment)
     end
 
-    # it "should have a list of integrations" do
-    #   @project.integrations.should == 1
-    # end
-
     it "should have a fault count" do
       @project.fault_count.should == 14
     end

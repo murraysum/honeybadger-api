@@ -7,7 +7,7 @@ require "honeybadger-api/request"
 require "honeybadger-api/team"
 require "honeybadger-api/team_member"
 require "honeybadger-api/user"
-require "honeybadger-api/api"
+require "honeybadger-api/client"
 require "honeybadger-api/deploy"
 require "honeybadger-api/team_invitation"
 require "honeybadger-api/comment"
@@ -34,7 +34,7 @@ module Honeybadger
 
     # Public: Query the HoneyBadger Read API directly.
     def self.client
-      Honeybadger::Api::Api.new(@configuration.access_token)
+      Honeybadger::Api::Client.new(@configuration.access_token)
     end
 
   end

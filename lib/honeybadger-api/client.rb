@@ -3,8 +3,8 @@ require 'uri'
 require 'json'
 
 module Honeybadger
-  module Read
-    class Api
+  module Api
+    class Client
       
       attr_reader :access_token
 

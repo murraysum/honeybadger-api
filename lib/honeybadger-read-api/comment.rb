@@ -4,6 +4,11 @@ module Honeybadger
 
       attr_reader :id, :fault_id, :event, :source, :notices_count, :author, :body, :created_at
 
+      # Public: Build a new instance of Comment
+      #
+      # opts - A Hash of attributes to initialize a Comment
+      #
+      # Returns a new Comment
       def initialize(opts)
         @id = opts[:id]
         @fault_id = opts[:fault_id]

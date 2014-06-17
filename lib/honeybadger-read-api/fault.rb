@@ -5,6 +5,11 @@ module Honeybadger
       attr_reader :id, :project_id, :klass, :action, :component, :message,
         :environment, :notices_count, :comments_count, :last_notice_at, :created_at
 
+      # Public: Build a new instance of Fault
+      #
+      # opts - A Hash of attributes to initialize a Fault
+      #
+      # Returns a new Fault
       def initialize(opts)
         @id = opts[:id]
         @project_id = opts[:project_id]

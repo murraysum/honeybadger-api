@@ -4,6 +4,11 @@ module Honeybadger
 
       attr_reader :id, :name, :owner, :team_members, :projects, :created_at
 
+      # Public: Build a new instance of Team
+      #
+      # opts - A Hash of attributes to initialize a Team
+      #
+      # Returns a new Team
       def initialize(opts)
         @id = opts[:id]
         @name = opts[:name]

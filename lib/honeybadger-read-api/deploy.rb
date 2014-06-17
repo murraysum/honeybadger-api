@@ -4,6 +4,11 @@ module Honeybadger
 
       attr_reader :id, :project_id, :repository, :revision, :environment, :local_username, :created_at
 
+      # Public: Build a new instance of Deploy
+      #
+      # opts - A Hash of attributes to initialize a Deploy
+      #
+      # Returns a new Deploy
       def initialize(opts)
         @id = opts[:id]
         @project_id = opts[:project_id]

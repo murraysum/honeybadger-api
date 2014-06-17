@@ -4,6 +4,11 @@ module Honeybadger
 
       attr_reader :id, :token, :email, :created_by, :accepted_by, :created_at, :accepted_at, :message
 
+      # Public: Build a new instance of TeamInvitation
+      #
+      # opts - A Hash of attributes to initialize a TeamInvitation
+      #
+      # Returns a new TeamInvitation
       def initialize(opts)
         @id = opts[:id]
         @token = opts[:token]

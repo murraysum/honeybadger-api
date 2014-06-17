@@ -4,6 +4,11 @@ module Honeybadger
 
       attr_reader :id, :fault_id, :environment, :message, :request, :created_at
 
+      # Public: Build a new instance of Notice
+      #
+      # opts - A Hash of attributes to initialize a Notice
+      #
+      # Returns a new Notice
       def initialize(opts)
         @id = opts[:id]
         @fault_id = opts[:fault_id]

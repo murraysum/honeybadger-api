@@ -5,6 +5,11 @@ module Honeybadger
       attr_reader :id, :name, :owner, :users, :token, :environments, :integrations,
         :fault_count, :unresolved_fault_count, :last_notice_at, :created_at
 
+      # Public: Build a new instance of Project
+      #
+      # opts - A Hash of attributes to initialize a Project
+      #
+      # Returns a new Project
       def initialize(opts)
         @id = opts[:id]
         @name = opts[:name]

@@ -32,7 +32,7 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should have an environment" do
-      @fault.environment.should be_kind_of(Honeybadger::Api::Environment)
+      @fault.environment.should == "production"
     end
 
     it "should have a notice count" do

@@ -17,7 +17,7 @@ module Honeybadger
         @action = opts[:action]
         @component = opts[:component]
         @message = opts[:message]
-        @environment = Environment.new(opts[:environment])
+        @environment = opts[:environment]
         @ignored = opts[:ignored]
         @resolved = opts[:resolved]
         @notices_count = opts[:notices_count]

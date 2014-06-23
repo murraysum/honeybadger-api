@@ -13,8 +13,16 @@ module Honeybadger
         @id = opts[:id]
         @token = opts[:token]
         @email = opts[:email]
-        @created_by = User.new(opts[:created_by][:name], opts[:created_by][:email])
-        @accepted_by = User.new(opts[:accepted_by][:name], opts[:accepted_by][:email])
+        if opts[:created_by].nil?
+          @created_by = nil
+        else
+          @created_by = User.new(opts[:created_by][:name], opts[:created_by][:email])
+        end
+        if opts[:accepted_by].nil?
+          @accepted_by = nil
+        else
+          @accepted_by = User.new(opts[:accepted_by][:name], opts[:accepted_by][:email])
+        end
         @admin = opts[:admin]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
         @accepted_at = opts[:accepted_at].nil? ? nil : DateTime.parse(opts[:accepted_at])

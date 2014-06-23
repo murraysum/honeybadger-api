@@ -20,7 +20,7 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have an environment" do
-      @notice.environment.should be_kind_of(Honeybadger::Api::Environment)
+      @notice.environment.should == "production"
     end
 
     it "should have a request" do

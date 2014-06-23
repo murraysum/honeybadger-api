@@ -2,14 +2,14 @@ module Honeybadger
   module Api
     class Paginator
 
-      attr_reader :current_page, :total_page_count
+      attr_reader :current_page, :total_page_count, :pages
 
       def initialize(path, filters, handler)
         @path = path
         @filters = filters
         @handler = handler
 
-        @collection = {}
+        @pages = {}
 
         @filters.merge!({ :page => 1 }) if !@filters.has_key?(:page)
         response = Honeybadger::Api.client.get(@path, @filters)
@@ -17,7 +17,7 @@ module Honeybadger
         @current_page = response[:current_page]
         @total_page_count = response[:num_pages]
 
-        @collection[current_page] = response[:results].map do |r|
+        @pages[current_page] = response[:results].map do |r|
           @handler.call(r)
         end
       end
@@ -37,11 +37,11 @@ module Honeybadger
           @current_page = response[:current_page]
           @total_page_count = response[:num_pages]
 
-          @collection[current_page] = response[:results].map do |r|
+          @pages[current_page] = response[:results].map do |r|
             @handler.call(r)
           end
 
-          @collection[current_page]
+          @pages[current_page]
         else
           nil
         end
@@ -54,18 +54,18 @@ module Honeybadger
           @current_page = response[:current_page]
           @total_page_count = response[:num_pages]
 
-          @collection[current_page] = response[:results].map do |r|
+          @pages[current_page] = response[:results].map do |r|
             @handler.call(r)
           end
 
-          @collection[current_page]
+          @pages[current_page]
         else
           nil
         end
       end
 
       def collection
-        @collection.values.flatten
+        @pages.values.flatten
       end
     end
   end

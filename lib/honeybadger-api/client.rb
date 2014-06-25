@@ -25,7 +25,6 @@ module Honeybadger
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-        puts "GET: #{uri}"
         request = Net::HTTP::Get.new(uri.request_uri)
 
         response = http.request(request)

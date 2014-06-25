@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Honeybadger::Api::VERSION
   spec.authors       = ["Murray Summers"]
   spec.email         = ["murray.sum@gmail.com"]
-  spec.description   = %q{Retrieve data from the Honeybadger Read API}
   spec.summary       = %q{Honeybadger Read API}
+  spec.description   = %q{A Ruby Library for the Honeybadger Read API for easily pulling your data out of Honeybadger}
   spec.homepage      = "https://github.com/murraysum/honeybadger-api"
   spec.license       = "MIT"
   spec.files         = `git ls-files`.split($/)

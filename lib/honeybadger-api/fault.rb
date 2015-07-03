@@ -3,7 +3,8 @@ module Honeybadger
     class Fault
 
       attr_reader :id, :project_id, :klass, :action, :component, :message, :assignee,
-        :environment, :notices_count, :comments_count, :last_notice_at, :created_at
+        :environment, :notices_count, :comments_count, :last_notice_at, :created_at, :ignored,
+        :resolved
 
       # Public: Build a new instance of Fault
       #

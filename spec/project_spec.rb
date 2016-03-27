@@ -8,47 +8,47 @@ describe Honeybadger::Api::Project do
     end
 
     it "should have an identifier" do
-      @project.id.should == 1
+      expect(@project.id).to eql(1)
     end
 
     it "should have a name" do
-      @project.name.should == "Rails"
+      expect(@project.name).to eql("Rails")
     end
 
     it "should have an owner" do
-      @project.owner.name.should == "Tom Smith"
-      @project.owner.email.should == "tom.smith@example.com"
+      expect(@project.owner.name).to eql("Tom Smith")
+      expect(@project.owner.email).to eql("tom.smith@example.com")
     end
 
     it "should have users" do
-      @project.users.length.should == 1
-      @project.users.first.name.should == "user"
-      @project.users.first.email.should == "user@example.com"
+      expect(@project.users.length).to eql(1)
+      expect(@project.users.first.name).to eql("user")
+      expect(@project.users.first.email).to eql("user@example.com")
     end
 
     it "should have a token" do
-      @project.token.should == "098sflj2"
+      expect(@project.token).to eql("098sflj2")
     end
 
     it "should have a list of environments" do
-      @project.environments.length.should == 1
-      @project.environments.first.should be_kind_of(Honeybadger::Api::Environment)
+      expect(@project.environments.length).to eql(1)
+      expect(@project.environments.first).to be_kind_of(Honeybadger::Api::Environment)
     end
 
     it "should have a fault count" do
-      @project.fault_count.should == 14
+      expect(@project.fault_count).to eql(14)
     end
 
     it "should have an unresolved fault count" do
-      @project.unresolved_fault_count.should == 1
+      expect(@project.unresolved_fault_count).to eql(1)
     end
 
     it "should have a last notice at" do
-      @project.last_notice_at.should == DateTime.parse("2012-01-01T00:02:00Z")
+      expect(@project.last_notice_at).to eql(DateTime.parse("2012-01-01T00:02:00Z"))
     end
 
     it "should have a created_at" do
-      @project.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@project.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 
@@ -58,11 +58,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify the project as active" do
-      @project.active?.should be_true
+      expect(@project.active?).to be_true
     end
 
     it "should not identify the project as inactive" do
-      @project.inactive?.should be_false
+      expect(@project.inactive?).to be_false
     end
   end
 
@@ -72,11 +72,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify the project as inactive" do
-      @project.inactive?.should be_true
+      expect(@project.inactive?).to be_true
     end
 
     it "should not identify the project as active" do
-      @project.active?.should be_false
+      expect(@project.active?).to be_false
     end
   end
 
@@ -86,11 +86,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify as publicly linked" do
-      @project.public_links?.should be_true
+      expect(@project.public_links?).to be_true
     end
 
     it "should not identify as privately linked" do
-      @project.private_links?.should be_false
+      expect(@project.private_links?).to be_false
     end
   end
 
@@ -100,11 +100,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify as privately linked" do
-      @project.private_links?.should be_true
+      expect(@project.private_links?).to be_true
     end
 
     it "should not identify as publicly linked" do
-      @project.public_links?.should be_false
+      expect(@project.public_links?).to be_false
     end
   end
 

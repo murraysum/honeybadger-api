@@ -8,23 +8,23 @@ describe Honeybadger::Api::TeamMember do
     end
 
     it "should have an identifier" do
-      @team_member.id.should == 1 
+      expect(@team_member.id).to eql(1)
     end
 
     it "should have a name" do
-      @team_member.name.should == "John Smith"
+      expect(@team_member.name).to eql("John Smith")
     end
 
     it "should have an email address" do
-      @team_member.email.should == "john.smith@example.com"
+      expect(@team_member.email).to eql("john.smith@example.com")
     end
 
     it "should have an admin flag" do
-      @team_member.admin.should == false
+      expect(@team_member.admin).to eql(false)
     end
 
     it "should have the date the team member was created" do
-      @team_member.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@team_member.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 
@@ -34,35 +34,35 @@ describe Honeybadger::Api::TeamMember do
     end
 
     it "should have an identifier" do
-      @team_member.id.should == 1 
+      expect(@team_member.id).to eql(1)
     end
 
     it "should have a name" do
-      @team_member.name.should == "John Smith"
+      expect(@team_member.name).to eql("John Smith")
     end
 
     it "should have an email address" do
-      @team_member.email.should == "john.smith@example.com"
+      expect(@team_member.email).to eql("john.smith@example.com")
     end
 
     it "should have an admin flag" do
-      @team_member.admin.should == true 
+      expect(@team_member.admin).to eql(true)
     end
 
     it "should have the date the team member was created" do
-      @team_member.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@team_member.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 
   describe "admin?" do
     it "should be an admin" do
       @team_member = FactoryGirl.build :admin_team_member
-      @team_member.admin?.should be_true
+      expect(@team_member.admin?).to be_true
     end
 
     it "should not be an admin" do
       @team_member = FactoryGirl.build :normal_team_member
-      @team_member.admin?.should be_false
+      expect(@team_member.admin?).to be_false
     end
   end
 

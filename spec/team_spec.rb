@@ -8,20 +8,20 @@ describe Honeybadger::Api::Team do
     end
 
     it "should have an identifier" do
-      @team.id.should == 1
+      expect(@team.id).to eql(1)
     end
 
     it "should have a name" do
-      @team.name.should == "team"
+      expect(@team.name).to eql("team")
     end
 
     it "should have an owner" do
-      @team.owner.name.should == "Tom Smith"
-      @team.owner.email.should == "tom.smith@example.com"
+      expect(@team.owner.name).to eql("Tom Smith")
+      expect(@team.owner.email).to eql("tom.smith@example.com")
     end
 
     it "should have a created_at" do
-      @team.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@team.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 

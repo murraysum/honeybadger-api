@@ -8,31 +8,31 @@ describe Honeybadger::Api::Deploy do
     end
 
     it "should have a identifier" do
-      @deploy.id.should == 1 
+      expect(@deploy.id).to eql(1)
     end
 
     it "should have a project identifier" do
-      @deploy.project_id.should == 2 
+      expect(@deploy.project_id).to eql(2)
     end
 
     it "should have a repository" do
-      @deploy.repository.should == "honeybadger-api"
+      expect(@deploy.repository).to eql("honeybadger-api")
     end
 
     it "should have a revision" do
-      @deploy.revision.should == "11111" 
+      expect(@deploy.revision).to eql("11111")
     end
 
     it "should have a environment" do
-      @deploy.environment.should == "production"
+      expect(@deploy.environment).to eql("production")
     end
 
     it "should have a local_username" do
-      @deploy.local_username.should == "deploy" 
+      expect(@deploy.local_username).to eql("deploy")
     end
 
     it "should have the date the deploy was made" do
-      @deploy.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@deploy.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 

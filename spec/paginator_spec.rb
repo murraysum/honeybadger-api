@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe Honeybadger::Api::Paginator do
 
-  describe "initializing a new paginator" do
-
-  end
-
   describe "next? and previous?" do
     before :all do
       @client_stub = stub('client')
@@ -26,11 +22,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should not have a next page" do
-        @paginator.next?.should be_false
+        expect(@paginator.next?).to be_false
       end
 
       it "should not have a previous page" do
-        @paginator.previous?.should be_false
+        expect(@paginator.previous?).to be_false
       end
     end
 
@@ -49,11 +45,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should have a next page" do
-        @paginator.next?.should be_true
+        expect(@paginator.next?).to be_true
       end
 
       it "should not have a previous page" do
-        @paginator.previous?.should be_false
+        expect(@paginator.previous?).to be_false
       end
     end
 
@@ -72,11 +68,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should not have a next page" do
-        @paginator.next?.should be_false
+        expect(@paginator.next?).to be_false
       end
 
       it "should have a previous page" do
-        @paginator.previous?.should be_true
+        expect(@paginator.previous?).to be_true
       end
     end
 
@@ -95,11 +91,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should have a next page" do
-        @paginator.next?.should be_true
+        expect(@paginator.next?).to be_true
       end
 
       it "should have a previous page" do
-        @paginator.previous?.should be_true
+        expect(@paginator.previous?).to be_true
       end
     end
   end

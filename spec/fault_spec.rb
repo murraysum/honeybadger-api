@@ -8,47 +8,47 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should have a identifier" do
-      @fault.id.should == 1
+      expect(@fault.id).to eql(1)
     end
 
     it "should have a project identifier" do
-      @fault.project_id.should == 2
+      expect(@fault.project_id).to eql(2)
     end
 
     it "should have an exception klass" do
-      @fault.klass.should == "RuntimeError"
+      expect(@fault.klass).to eql("RuntimeError")
     end
 
     it "should have an action where the fault occurs" do
-      @fault.action.should == "runtime_error"
+      expect(@fault.action).to eql("runtime_error")
     end
 
     it "should have a component where the fault occurs" do
-      @fault.component.should == "pages"
+      expect(@fault.component).to eql("pages")
     end
 
     it "should have a message" do
-      @fault.message.should == "This is a runtime error"
+      expect(@fault.message).to eql("This is a runtime error")
     end
 
     it "should have an environment" do
-      @fault.environment.should == "production"
+      expect(@fault.environment).to eql("production")
     end
 
     it "should have a notice count" do
-      @fault.notices_count.should == 7
+      expect(@fault.notices_count).to eql(7)
     end
 
     it "should have a comment count" do
-      @fault.comments_count.should == 0
+      expect(@fault.comments_count).to eql(0)
     end
 
     it "should have a last notice at" do
-      @fault.last_notice_at.should == DateTime.parse("2012-01-01T00:02:00Z")
+      expect(@fault.last_notice_at).to eql(DateTime.parse("2012-01-01T00:02:00Z"))
     end
 
     it "should have a created_at" do
-      @fault.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@fault.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 
@@ -58,7 +58,7 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as ignored" do
-      @fault.ignored?.should be_true
+      expect(@fault.ignored?).to be_true
     end
   end
 
@@ -68,7 +68,7 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as resolved" do
-      @fault.resolved?.should be_true
+      expect(@fault.resolved?).to be_true
     end
   end
 
@@ -78,11 +78,11 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as unresolved" do
-      @fault.resolved?.should be_false
+      expect(@fault.resolved?).to be_false
     end
 
     it "should identify the fault as not ignored" do
-      @fault.ignored?.should be_false
+      expect(@fault.ignored?).to be_false
     end
   end
 

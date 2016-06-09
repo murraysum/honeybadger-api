@@ -7,11 +7,11 @@ describe Honeybadger::Api::User do
     end
 
     it "should have a name" do
-      @user.name.should == "Tom Smith"
+      expect(@user.name).to eql("Tom Smith")
     end
 
     it "should have an email address" do
-      @user.email.should == "tom.smith@example.com"
+      expect(@user.email).to eql("tom.smith@example.com")
     end
   end
 end

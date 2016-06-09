@@ -8,35 +8,35 @@ describe Honeybadger::Api::Comment do
     end
 
     it "should have a identifier" do
-      @comment.id.should == 1 
+      expect(@comment.id).to eql(1)
     end
 
     it "should have a fault identifier" do
-      @comment.fault_id.should == 2 
+      expect(@comment.fault_id).to eql(2)
     end
 
     it "should have an event" do
-      @comment.event.should == "an event"
+      expect(@comment.event).to eql("an event")
     end
 
     it "should have a source" do
-      @comment.source.should == "app" 
+      expect(@comment.source).to eql("app")
     end
 
     it "should have a notice count" do
-      @comment.notices_count.should == 5 
+      expect(@comment.notices_count).to eql(5)
     end
 
     it "should have an author" do
-      @comment.author.should == "John" 
+      expect(@comment.author).to eql("John")
     end
 
     it "should have a body" do
-      @comment.body.should == "This is a comment" 
+      expect(@comment.body).to eql("This is a comment")
     end
 
     it "should have the date the comment was created" do
-      @comment.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@comment.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 

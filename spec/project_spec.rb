@@ -58,11 +58,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify the project as active" do
-      expect(@project.active?).to be_true
+      expect(@project.active?).to be_truthy
     end
 
     it "should not identify the project as inactive" do
-      expect(@project.inactive?).to be_false
+      expect(@project.inactive?).to be_falsey
     end
   end
 
@@ -72,11 +72,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify the project as inactive" do
-      expect(@project.inactive?).to be_true
+      expect(@project.inactive?).to be_truthy
     end
 
     it "should not identify the project as active" do
-      expect(@project.active?).to be_false
+      expect(@project.active?).to be_falsey
     end
   end
 
@@ -86,11 +86,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify as publicly linked" do
-      expect(@project.public_links?).to be_true
+      expect(@project.public_links?).to be_truthy
     end
 
     it "should not identify as privately linked" do
-      expect(@project.private_links?).to be_false
+      expect(@project.private_links?).to be_falsey
     end
   end
 
@@ -100,11 +100,11 @@ describe Honeybadger::Api::Project do
     end
 
     it "should identify as privately linked" do
-      expect(@project.private_links?).to be_true
+      expect(@project.private_links?).to be_truthy
     end
 
     it "should not identify as publicly linked" do
-      expect(@project.public_links?).to be_false
+      expect(@project.public_links?).to be_falsey
     end
   end
 

@@ -19,7 +19,7 @@ describe Honeybadger::Api::Environment do
     end
 
     it "should raise notifications" do
-      expect(@environment.notifications?).to be_true
+      expect(@environment.notifications?).to be_truthy
     end
 
     it "should have the date the environment was updated" do

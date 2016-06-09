@@ -38,7 +38,7 @@ describe Honeybadger::Api::TeamInvitation do
     end
 
     it "should identify as an admin invitation" do
-      expect(@team_invitation.admin?).to be_true
+      expect(@team_invitation.admin?).to be_truthy
     end
   end
 
@@ -48,7 +48,7 @@ describe Honeybadger::Api::TeamInvitation do
     end
 
     it "should not identify as an admin invitation" do
-      expect(@team_invitation.admin?).to be_false
+      expect(@team_invitation.admin?).to be_falsey
     end
   end
 

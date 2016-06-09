@@ -57,12 +57,12 @@ describe Honeybadger::Api::TeamMember do
   describe "admin?" do
     it "should be an admin" do
       @team_member = FactoryGirl.build :admin_team_member
-      expect(@team_member.admin?).to be_true
+      expect(@team_member.admin?).to be_truthy
     end
 
     it "should not be an admin" do
       @team_member = FactoryGirl.build :normal_team_member
-      expect(@team_member.admin?).to be_false
+      expect(@team_member.admin?).to be_falsey
     end
   end
 

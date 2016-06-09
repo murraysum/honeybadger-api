@@ -58,7 +58,7 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as ignored" do
-      expect(@fault.ignored?).to be_true
+      expect(@fault.ignored?).to be_truthy
     end
   end
 
@@ -68,7 +68,7 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as resolved" do
-      expect(@fault.resolved?).to be_true
+      expect(@fault.resolved?).to be_truthy
     end
   end
 
@@ -78,11 +78,11 @@ describe Honeybadger::Api::Fault do
     end
 
     it "should identify the fault as unresolved" do
-      expect(@fault.resolved?).to be_false
+      expect(@fault.resolved?).to be_falsey
     end
 
     it "should identify the fault as not ignored" do
-      expect(@fault.ignored?).to be_false
+      expect(@fault.ignored?).to be_falsey
     end
   end
 

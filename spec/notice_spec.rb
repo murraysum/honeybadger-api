@@ -24,7 +24,7 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have a request" do
-      expect(@notice.request.empty?).to be_false
+      expect(@notice.request.empty?).to be_falsey
     end
 
     it "should have a created_at" do

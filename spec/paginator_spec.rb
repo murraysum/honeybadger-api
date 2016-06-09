@@ -22,11 +22,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should not have a next page" do
-        expect(@paginator.next?).to be_false
+        expect(@paginator.next?).to be_falsey
       end
 
       it "should not have a previous page" do
-        expect(@paginator.previous?).to be_false
+        expect(@paginator.previous?).to be_falsey
       end
     end
 
@@ -45,11 +45,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should have a next page" do
-        expect(@paginator.next?).to be_true
+        expect(@paginator.next?).to be_truthy
       end
 
       it "should not have a previous page" do
-        expect(@paginator.previous?).to be_false
+        expect(@paginator.previous?).to be_falsey
       end
     end
 
@@ -68,11 +68,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should not have a next page" do
-        expect(@paginator.next?).to be_false
+        expect(@paginator.next?).to be_falsey
       end
 
       it "should have a previous page" do
-        expect(@paginator.previous?).to be_true
+        expect(@paginator.previous?).to be_truthy
       end
     end
 
@@ -91,11 +91,11 @@ describe Honeybadger::Api::Paginator do
       end
 
       it "should have a next page" do
-        expect(@paginator.next?).to be_true
+        expect(@paginator.next?).to be_truthy
       end
 
       it "should have a previous page" do
-        expect(@paginator.previous?).to be_true
+        expect(@paginator.previous?).to be_truthy
       end
     end
   end

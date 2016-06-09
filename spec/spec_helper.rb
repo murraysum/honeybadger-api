@@ -5,7 +5,7 @@ require 'factory_girl'
 require 'honeybadger-api'
 
 RSpec.configure do |config|
-  config.color_enabled = true
+  config.color = true
   config.formatter = 'documentation'
   config.mock_framework = :mocha
 end

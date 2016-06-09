@@ -8,27 +8,27 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have a identifier" do
-      @notice.id.should == 1
+      expect(@notice.id).to eql(1)
     end
 
     it "should have a fault identifier" do
-      @notice.fault_id.should == 2
+      expect(@notice.fault_id).to eql(2)
     end
 
     it "should have a message" do
-      @notice.message.should == "This is a runtime error"
+      expect(@notice.message).to eql("This is a runtime error")
     end
 
     it "should have an environment" do
-      @notice.environment.should == "production"
+      expect(@notice.environment).to eql("production")
     end
 
     it "should have a request" do
-      @notice.request.empty?.should == false
+      expect(@notice.request.empty?).to be_falsey
     end
 
     it "should have a created_at" do
-      @notice.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@notice.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
   end
 

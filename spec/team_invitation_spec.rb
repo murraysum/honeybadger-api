@@ -8,27 +8,27 @@ describe Honeybadger::Api::TeamInvitation do
     end
 
     it "should have a identifier" do
-      @team_invitation.id.should == 1
+      expect(@team_invitation.id).to eql(1)
     end
 
     it "should have a token" do
-      @team_invitation.token.should == "e62394d2"
+      expect(@team_invitation.token).to eql("e62394d2")
     end
 
     it "should have an email" do
-      @team_invitation.email.should == "invitation@example.com"
+      expect(@team_invitation.email).to eql("invitation@example.com")
     end
 
     it "should have an accepted_at date" do
-      @team_invitation.accepted_at.should == DateTime.parse("2012-01-01T00:02:00Z")
+      expect(@team_invitation.accepted_at).to eql(DateTime.parse("2012-01-01T00:02:00Z"))
     end
 
     it "should have a created_at date" do
-      @team_invitation.created_at.should == DateTime.parse("2012-01-01T00:01:00Z")
+      expect(@team_invitation.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
 
     it "should have a invitation message" do
-      @team_invitation.message.should == "Come join in"
+      expect(@team_invitation.message).to eql("Come join in")
     end
   end
 
@@ -38,7 +38,7 @@ describe Honeybadger::Api::TeamInvitation do
     end
 
     it "should identify as an admin invitation" do
-      @team_invitation.admin?.should be_true
+      expect(@team_invitation.admin?).to be_truthy
     end
   end
 
@@ -48,7 +48,7 @@ describe Honeybadger::Api::TeamInvitation do
     end
 
     it "should not identify as an admin invitation" do
-      @team_invitation.admin?.should be_false
+      expect(@team_invitation.admin?).to be_falsey
     end
   end
 

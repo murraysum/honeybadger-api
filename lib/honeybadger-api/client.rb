@@ -27,6 +27,7 @@ module Honeybadger
         http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
         request = Net::HTTP::Get.new(uri.request_uri)
+        request.basic_auth(access_token, nil)
 
         response = http.request(request)
       end
@@ -38,11 +39,11 @@ module Honeybadger
       end
 
       def build_query(opts)
-        URI.encode_www_form(opts.merge({:auth_token => access_token}))
+        URI.encode_www_form(opts)
       end
 
       def host
-        "https://api.honeybadger.io/v1/"
+        "https://api.honeybadger.io/v2/"
       end
     end
   end

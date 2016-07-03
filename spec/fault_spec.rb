@@ -50,6 +50,10 @@ describe Honeybadger::Api::Fault do
     it "should have a created_at" do
       expect(@fault.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end
+
+    it "should have a url" do
+      expect(@fault.url).to eql("https://app.honeybadger.io/projects/2/faults/1")
+    end
   end
 
   describe "an ignored fault" do

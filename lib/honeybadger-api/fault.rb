@@ -3,7 +3,8 @@ module Honeybadger
     class Fault
 
       attr_reader :id, :project_id, :klass, :action, :component, :message,
-        :environment, :notices_count, :comments_count, :last_notice_at, :created_at
+        :environment, :notices_count, :comments_count, :last_notice_at, :created_at,
+        :url
 
       # Public: Build a new instance of Fault
       #
@@ -24,6 +25,7 @@ module Honeybadger
         @comments_count = opts[:comments_count]
         @last_notice_at = opts[:last_notice_at].nil? ? nil : DateTime.parse(opts[:last_notice_at])
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
+        @url = opts[:url]
       end
 
       # Public: Whether tha fault has been marked as ignored.

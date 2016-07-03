@@ -54,6 +54,10 @@ describe Honeybadger::Api::Fault do
     it "should have a url" do
       expect(@fault.url).to eql("https://app.honeybadger.io/projects/2/faults/1")
     end
+
+    it "should not have an assignee" do
+      expect(@fault.assignee).to be_nil
+    end
   end
 
   describe "an ignored fault" do
@@ -73,6 +77,20 @@ describe Honeybadger::Api::Fault do
 
     it "should identify the fault as resolved" do
       expect(@fault.resolved?).to be_truthy
+    end
+  end
+
+  describe "an assigned fault" do
+    before :each do
+      @fault = FactoryGirl.build :assigned_fault
+    end
+
+    it "should have an assigned name" do
+      expect(@fault.assignee.name).to eql("Tom Smith")
+    end
+
+    it "should have an assigned email" do
+      expect(@fault.assignee.email).to eql("tom.smith@example.com")
     end
   end
 

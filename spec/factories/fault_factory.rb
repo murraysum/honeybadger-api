@@ -14,10 +14,15 @@ FactoryGirl.define do
     last_notice_at "2012-01-01T00:02:00Z"
     created_at "2012-01-01T00:01:00Z"
     url "https://app.honeybadger.io/projects/2/faults/1"
+    assignee nil
 
     initialize_with do
       new(attributes)
     end
+  end
+
+  factory :assigned_fault, :parent => :fault do
+    association :assignee, :factory => :user, :strategy => :attributes_for
   end
 
   factory :ignored_fault, :parent => :fault do

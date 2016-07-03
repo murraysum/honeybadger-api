@@ -58,6 +58,10 @@ describe Honeybadger::Api::Fault do
     it "should not have an assignee" do
       expect(@fault.assignee).to be_nil
     end
+
+    it "should have tags" do
+      expect(@fault.tags).to eql(["internal"])
+    end
   end
 
   describe "an ignored fault" do

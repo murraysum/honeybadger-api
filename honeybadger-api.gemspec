@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'json'
 
-  spec.add_development_dependency 'rspec', '2.14.1'
+  spec.add_development_dependency 'rspec', '3.4.0'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'factory_girl'

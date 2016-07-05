@@ -2,8 +2,9 @@ module Honeybadger
   module Api
     class Fault
 
-      attr_reader :id, :project_id, :klass, :action, :component, :message,
-        :environment, :notices_count, :comments_count, :last_notice_at, :created_at
+      attr_reader :id, :project_id, :klass, :action, :component, :message, :assignee,
+        :environment, :notices_count, :comments_count, :last_notice_at, :created_at, :ignored,
+        :resolved
 
       # Public: Build a new instance of Fault
       #
@@ -16,7 +17,8 @@ module Honeybadger
         @klass = opts[:klass]
         @action = opts[:action]
         @component = opts[:component]
-        @message = opts[:message]
+        @message = opts[:message],
+        @assignee = opts[:assignee],
         @environment = opts[:environment]
         @ignored = opts[:ignored]
         @resolved = opts[:resolved]

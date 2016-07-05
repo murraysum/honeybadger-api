@@ -16,6 +16,7 @@ FactoryGirl.define do
     url "https://app.honeybadger.io/projects/2/faults/1"
     assignee nil
     tags ["internal"]
+    association :deploy, :factory => :deploy, :strategy => :attributes_for
 
     initialize_with do
       new(attributes)

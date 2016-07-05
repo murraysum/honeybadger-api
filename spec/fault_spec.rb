@@ -62,6 +62,10 @@ describe Honeybadger::Api::Fault do
     it "should have tags" do
       expect(@fault.tags).to eql(["internal"])
     end
+
+    it "should have a deploy object" do
+      expect(@fault.deploy).to_not be_nil
+    end
   end
 
   describe "an ignored fault" do

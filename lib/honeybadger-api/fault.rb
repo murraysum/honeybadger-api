@@ -4,7 +4,7 @@ module Honeybadger
 
       attr_reader :id, :project_id, :klass, :action, :component, :message,
         :environment, :notices_count, :comments_count, :last_notice_at, :created_at,
-        :url, :assignee, :tags
+        :url, :assignee, :tags, :deploy
 
       # Public: Build a new instance of Fault
       #
@@ -30,6 +30,7 @@ module Honeybadger
           @assignee = User.new(opts[:assignee][:name], opts[:assignee][:email])
         end
         @tags = opts[:tags]
+        @deploy = Deploy.new(opts[:deploy].merge({:project_id => opts[:project_id]}))
       end
 
       # Public: Whether tha fault has been marked as ignored.

@@ -15,7 +15,7 @@ module Honeybadger
 
       def get(path, options = {})
         response = request(path, options)
-        JSON.parse(response.body, :symbolize_names => true)
+        JSON.parse(response.body, :symbolize_names => true, :symbolize_keys => true)
       end
 
       private

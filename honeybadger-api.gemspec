@@ -22,5 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '3.4.0'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'mocha'
-  spec.add_development_dependency 'factory_girl'
+  spec.add_development_dependency 'factory_girl', '4.7.0'
+  spec.add_development_dependency 'activesupport', '4.2.6'
 end

@@ -27,6 +27,10 @@ describe Honeybadger::Api::Notice do
       expect(@notice.environment_name).to eql("production")
     end
 
+    it "should have cookies" do
+      expect(@notice.cookies).to eql({:cookie => "monster"})
+    end
+
     it "should have a request" do
       expect(@notice.request.empty?).to be_falsey
     end

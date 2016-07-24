@@ -5,6 +5,7 @@ FactoryGirl.define do
     message "This is a runtime error"
     environment "production"
     environment_name "production"
+    cookies({:cookie => "monster"})
     request({:action => "runtime error"})
     created_at "2012-01-01T00:01:00Z"
 

@@ -28,6 +28,7 @@ FactoryGirl.define do
         :method => "get_existing_data"
       }
     ])
+    association :deploy, :factory => :deploy, :strategy => :attributes_for
     request({:action => "runtime error"})
     created_at "2012-01-01T00:01:00Z"
 

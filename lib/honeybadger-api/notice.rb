@@ -3,7 +3,7 @@ module Honeybadger
     class Notice
 
       attr_reader :id, :url, :fault_id, :environment, :environment_name, :cookies, :message,
-       :request, :created_at, :web_environment, :backtrace
+       :request, :created_at, :web_environment, :backtrace, :deploy
 
       # Public: Build a new instance of Notice
       #
@@ -19,6 +19,7 @@ module Honeybadger
         @cookies = opts[:cookies]
         @web_environment = opts[:web_environment]
         @backtrace = opts[:backtrace]
+        @deploy = Deploy.new(opts[:deploy])
         @message = opts[:message]
         @request = opts[:request]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])

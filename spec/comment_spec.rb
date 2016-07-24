@@ -35,6 +35,10 @@ describe Honeybadger::Api::Comment do
       expect(@comment.body).to eql("This is a comment")
     end
 
+    it "should have an email address" do
+      expect(@comment.email).to eql("test@example.com")
+    end
+
     it "should have the date the comment was created" do
       expect(@comment.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end

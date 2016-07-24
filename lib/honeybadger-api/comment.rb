@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Comment
 
-      attr_reader :id, :fault_id, :event, :source, :notices_count, :author, :body, :created_at
+      attr_reader :id, :fault_id, :event, :source, :notices_count, :author, :body, :email, :created_at
 
       # Public: Build a new instance of Comment
       #
@@ -17,6 +17,7 @@ module Honeybadger
         @notices_count = opts[:notices_count]
         @author = opts[:author]
         @body = opts[:body]
+        @email = opts[:email]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 

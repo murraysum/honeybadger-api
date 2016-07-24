@@ -6,6 +6,10 @@ FactoryGirl.define do
     environment "production"
     environment_name "production"
     cookies({:cookie => "monster"})
+    web_environment({
+      :REMOTE_ADDR=>"127.0.0.1",
+      :REQUEST_METHOD=>"POST"
+    })
     request({:action => "runtime error"})
     created_at "2012-01-01T00:01:00Z"
 

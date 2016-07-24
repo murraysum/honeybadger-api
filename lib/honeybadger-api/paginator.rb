@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Paginator
 
-      attr_reader :current_page, :pages
+      attr_reader :current_page, :pages, :next_page_link, :prev_page_link
 
       def initialize(path, filters, handler)
         @path = path
@@ -34,10 +34,13 @@ module Honeybadger
 
       def next
         if next?
-          response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page + 1}))
+          encoded_query = URI.parse(@next_page_link).query
+          decoded_query = URI.decode_www_form(encoded_query)
+          next_page_filters = decoded_query.inject({}){ |h,(k,v)| h[k.to_sym] = v; h }
+
+          response = Honeybadger::Api.client.get(@path, @filters.merge(next_page_filters))
 
           @current_page = current_page + 1
-
           @next_page_link = response[:links][:next]
           @prev_page_link = response[:links][:prev]
 
@@ -53,10 +56,13 @@ module Honeybadger
 
       def previous
         if previous?
-          response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page - 1}))
+          encoded_query = URI.parse(@prev_page_link).query
+          decoded_query = URI.decode_www_form(encoded_query)
+          prev_page_filters = decoded_query.inject({}){ |h,(k,v)| h[k.to_sym] = v; h }
+
+          response = Honeybadger::Api.client.get(@path, @filters.merge(prev_page_filters))
 
           @current_page = current_page - 1
-
           @next_page_link = response[:links][:next]
           @prev_page_link = response[:links][:prev]
 

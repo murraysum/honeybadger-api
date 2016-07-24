@@ -11,6 +11,10 @@ describe Honeybadger::Api::Deploy do
       expect(@deploy.id).to eql(1)
     end
 
+    it "should have a url" do
+      expect(@deploy.url).to eql("https://github.com/murraysum/honeybadger-api/compare/1cf2e67...c128731")
+    end
+
     it "should have a project identifier" do
       expect(@deploy.project_id).to eql(2)
     end

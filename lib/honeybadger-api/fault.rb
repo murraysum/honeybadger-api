@@ -30,7 +30,7 @@ module Honeybadger
           @assignee = User.new(opts[:assignee][:name], opts[:assignee][:email])
         end
         @tags = opts[:tags]
-        @deploy = Deploy.new(opts[:deploy])
+        @deploy = Deploy.new(opts[:deploy]) unless opts[:deploy].nil?
       end
 
       # Public: Whether tha fault has been marked as ignored.

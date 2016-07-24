@@ -31,6 +31,10 @@ describe Honeybadger::Api::Deploy do
       expect(@deploy.environment).to eql("production")
     end
 
+    it "should have a changelog" do
+      expect(@deploy.changelog).to eql(["New release"])
+    end
+
     it "should have a local_username" do
       expect(@deploy.local_username).to eql("deploy")
     end

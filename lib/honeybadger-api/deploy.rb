@@ -3,7 +3,7 @@ module Honeybadger
     class Deploy
 
       attr_reader :id, :url, :project_id, :repository, :revision, :environment,
-        :local_username, :created_at
+        :changelog, :local_username, :created_at
 
       # Public: Build a new instance of Deploy
       #
@@ -17,6 +17,7 @@ module Honeybadger
         @repository = opts[:repository]
         @revision = opts[:revision]
         @environment = opts[:environment]
+        @changelog = opts[:changelog]
         @local_username = opts[:local_username]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end

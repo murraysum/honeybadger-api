@@ -7,6 +7,7 @@ FactoryGirl.define do
     revision "11111"
     environment "production"
     local_username "deploy"
+    changelog ["New release"]
     created_at "2012-01-01T00:01:00Z"
 
     initialize_with do

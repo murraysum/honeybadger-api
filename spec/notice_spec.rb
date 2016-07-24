@@ -11,6 +11,10 @@ describe Honeybadger::Api::Notice do
       expect(@notice.id).to eql("5a24f938-a578-427d-a92b-d2f134d4af67")
     end
 
+    it "should have a url" do
+      expect(@notice.url).to eql("https://app.honeybadger.io/projects/1404/faults/2/5a24f938-a578-427d-a92b-d2f134d4af67")
+    end
+
     it "should have a fault identifier" do
       expect(@notice.fault_id).to eql(2)
     end

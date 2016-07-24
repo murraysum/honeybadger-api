@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :notice, :class => Honeybadger::Api::Notice do
     id "5a24f938-a578-427d-a92b-d2f134d4af67"
+    url "https://app.honeybadger.io/projects/1404/faults/2/5a24f938-a578-427d-a92b-d2f134d4af67"
     fault_id 2
     message "This is a runtime error"
     environment "production"

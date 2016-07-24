@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Notice
 
-      attr_reader :id, :fault_id, :environment, :environment_name, :cookies, :message,
+      attr_reader :id, :url, :fault_id, :environment, :environment_name, :cookies, :message,
        :request, :created_at, :web_environment
 
       # Public: Build a new instance of Notice
@@ -12,6 +12,7 @@ module Honeybadger
       # Returns a new Notice
       def initialize(opts)
         @id = opts[:id]
+        @url = opts[:url]
         @fault_id = opts[:fault_id]
         @environment = opts[:environment]
         @environment_name = opts[:environment_name]

@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Deploy
 
-      attr_reader :id, :url, :project_id, :repository, :revision, :environment,
+      attr_reader :url, :repository, :revision, :environment,
         :changelog, :local_username, :created_at
 
       # Public: Build a new instance of Deploy
@@ -11,9 +11,7 @@ module Honeybadger
       #
       # Returns a new Deploy
       def initialize(opts)
-        @id = opts[:id]
         @url = opts[:url]
-        @project_id = opts[:project_id]
         @repository = opts[:repository]
         @revision = opts[:revision]
         @environment = opts[:environment]

@@ -7,16 +7,8 @@ describe Honeybadger::Api::Deploy do
       @deploy = FactoryGirl.build :deploy
     end
 
-    it "should have a identifier" do
-      expect(@deploy.id).to eql(1)
-    end
-
     it "should have a url" do
       expect(@deploy.url).to eql("https://github.com/murraysum/honeybadger-api/compare/1cf2e67...c128731")
-    end
-
-    it "should have a project identifier" do
-      expect(@deploy.project_id).to eql(2)
     end
 
     it "should have a repository" do

@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :deploy, :class => Honeybadger::Api::Deploy do
-    id 1
-    project_id 2
     url "https://github.com/murraysum/honeybadger-api/compare/1cf2e67...c128731"
     repository "honeybadger-api"
     revision "11111"

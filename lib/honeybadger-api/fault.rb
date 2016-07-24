@@ -30,7 +30,7 @@ module Honeybadger
           @assignee = User.new(opts[:assignee][:name], opts[:assignee][:email])
         end
         @tags = opts[:tags]
-        @deploy = Deploy.new(opts[:deploy].merge({:project_id => opts[:project_id]}))
+        @deploy = Deploy.new(opts[:deploy])
       end
 
       # Public: Whether tha fault has been marked as ignored.

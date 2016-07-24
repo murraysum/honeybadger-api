@@ -31,6 +31,14 @@ describe Honeybadger::Api::Notice do
       expect(@notice.cookies).to eql({:cookie => "monster"})
     end
 
+    it "should have a web environment" do
+      web_environment = {
+        :REMOTE_ADDR => "127.0.0.1",
+        :REQUEST_METHOD => "POST"
+      }
+      expect(@notice.web_environment).to eql(web_environment)
+    end
+
     it "should have a request" do
       expect(@notice.request.empty?).to be_falsey
     end

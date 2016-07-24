@@ -71,9 +71,6 @@ paginator.next
 # Retrieve the current page number
 paginator.current_page
 
-# Retrieve the total number of pages
-paginator.total_page_count
-
 # Return all previously requested pages as a Hash
 paginator.pages
 => {

@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Paginator
 
-      attr_reader :current_page, :total_page_count, :pages
+      attr_reader :current_page, :pages
 
       def initialize(path, filters, handler)
         @path = path
@@ -12,10 +12,12 @@ module Honeybadger
         @pages = {}
 
         @filters.merge!({ :page => 1 }) if !@filters.has_key?(:page)
+        @current_page = @filters[:page]
+
         response = Honeybadger::Api.client.get(@path, @filters)
 
-        @current_page = response[:current_page]
-        @total_page_count = response[:num_pages]
+        @next_page_link = response[:links][:next]
+        @prev_page_link = response[:links][:prev]
 
         @pages[current_page] = response[:results].map do |r|
           @handler.call(r)
@@ -23,19 +25,21 @@ module Honeybadger
       end
 
       def next?
-        current_page < total_page_count
+        !@next_page_link.nil?
       end
 
       def previous?
-        current_page > 1
+        !@prev_page_link.nil?
       end
 
       def next
         if next?
           response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page + 1}))
 
-          @current_page = response[:current_page]
-          @total_page_count = response[:num_pages]
+          @current_page = current_page + 1
+
+          @next_page_link = response[:links][:next]
+          @prev_page_link = response[:links][:prev]
 
           @pages[current_page] = response[:results].map do |r|
             @handler.call(r)
@@ -51,8 +55,10 @@ module Honeybadger
         if previous?
           response = Honeybadger::Api.client.get(@path, @filters.merge({:page => current_page - 1}))
 
-          @current_page = response[:current_page]
-          @total_page_count = response[:num_pages]
+          @current_page = current_page - 1
+
+          @next_page_link = response[:links][:next]
+          @prev_page_link = response[:links][:prev]
 
           @pages[current_page] = response[:results].map do |r|
             @handler.call(r)

@@ -23,6 +23,10 @@ describe Honeybadger::Api::Notice do
       expect(@notice.environment).to eql("production")
     end
 
+    it "should have an environment_name" do
+      expect(@notice.environment_name).to eql("production")
+    end
+
     it "should have a request" do
       expect(@notice.request.empty?).to be_falsey
     end

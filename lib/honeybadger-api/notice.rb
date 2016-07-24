@@ -2,7 +2,7 @@ module Honeybadger
   module Api
     class Notice
 
-      attr_reader :id, :fault_id, :environment, :message, :request, :created_at
+      attr_reader :id, :fault_id, :environment, :environment_name, :message, :request, :created_at
 
       # Public: Build a new instance of Notice
       #
@@ -13,6 +13,7 @@ module Honeybadger
         @id = opts[:id]
         @fault_id = opts[:fault_id]
         @environment = opts[:environment]
+        @environment_name = opts[:environment_name]
         @message = opts[:message]
         @request = opts[:request]
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])

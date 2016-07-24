@@ -11,6 +11,18 @@ FactoryGirl.define do
       :REMOTE_ADDR=>"127.0.0.1",
       :REQUEST_METHOD=>"POST"
     })
+    backtrace([
+      {
+        :number => "21",
+        :file => "[PROJECT_ROOT]/lib/multivariate/participation/cookie_participation.rb",
+        :method => "[]"
+      },
+      {
+        :number => "21",
+        :file => "[PROJECT_ROOT]/lib/multivariate/participation/cookie_participation.rb",
+        :method => "get_existing_data"
+      }
+    ])
     request({:action => "runtime error"})
     created_at "2012-01-01T00:01:00Z"
 

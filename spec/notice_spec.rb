@@ -43,6 +43,22 @@ describe Honeybadger::Api::Notice do
       expect(@notice.web_environment).to eql(web_environment)
     end
 
+    it "should have a backtrace" do
+      backtrace = [
+        {
+          :number => "21",
+          :file => "[PROJECT_ROOT]/lib/multivariate/participation/cookie_participation.rb",
+          :method => "[]"
+        },
+        {
+          :number => "21",
+          :file => "[PROJECT_ROOT]/lib/multivariate/participation/cookie_participation.rb",
+          :method => "get_existing_data"
+        }
+      ]
+      expect(@notice.backtrace).to eql(backtrace)
+    end
+
     it "should have a request" do
       expect(@notice.request.empty?).to be_falsey
     end

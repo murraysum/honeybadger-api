@@ -24,7 +24,13 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have an environment" do
-      expect(@notice.environment).to eql("production")
+      environment = {
+        :project_root => "/data/www/apps/myapp/releases/20160701085636",
+        :environment_name => "production",
+        :hostname => "web1.myapp.com",
+        :pid => 22587
+      }
+      expect(@notice.environment).to eql(environment)
     end
 
     it "should have an environment_name" do

@@ -8,7 +8,7 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have a identifier" do
-      expect(@notice.id).to eql(1)
+      expect(@notice.id).to eql("5a24f938-a578-427d-a92b-d2f134d4af67")
     end
 
     it "should have a fault identifier" do

@@ -16,9 +16,7 @@ module Honeybadger
         @owner = User.new(opts[:owner][:name], opts[:owner][:email])
         @users = opts[:users].collect { |user| User.new(user[:name], user[:email]) }
         @token = opts[:token]
-        @environments = opts[:environments].collect do |env|
-          Environment.new(env)
-        end
+        @environments = opts[:environments]
         @active = opts[:active]
         @disable_public_links = opts[:disable_public_links]
         @fault_count = opts[:fault_count]

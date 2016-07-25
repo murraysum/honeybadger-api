@@ -31,8 +31,12 @@ describe Honeybadger::Api::Project do
     end
 
     it "should have a list of environments" do
-      expect(@project.environments.length).to eql(1)
-      expect(@project.environments.first).to be_kind_of(Honeybadger::Api::Environment)
+      environments = [
+        "development",
+        "integration",
+        "production"
+      ]
+      expect(@project.environments).to eql(environments)
     end
 
     it "should have a fault count" do

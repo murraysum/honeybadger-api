@@ -14,7 +14,6 @@ require "honeybadger-api/comment"
 require "honeybadger-api/project"
 require "honeybadger-api/fault"
 require "honeybadger-api/notice"
-require "honeybadger-api/environment"
 
 module Honeybadger
   module Api

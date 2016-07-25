@@ -12,7 +12,9 @@ FactoryGirl.define do
     ]
     token "098sflj2"
     environments [
-      FactoryGirl.attributes_for(:environment)
+      "development",
+      "integration",
+      "production"
     ]
     active true
     disable_public_links false

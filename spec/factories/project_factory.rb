@@ -24,6 +24,7 @@ FactoryGirl.define do
     fault_count 14
     unresolved_fault_count 1
     last_notice_at "2012-01-01T00:02:00Z"
+    earliest_notice_at "2016-04-26T20:38:02.318434Z"
     created_at "2012-01-01T00:01:00Z"
 
     initialize_with do

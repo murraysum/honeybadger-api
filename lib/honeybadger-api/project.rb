@@ -4,7 +4,7 @@ module Honeybadger
 
       attr_reader :id, :name, :owner, :users, :token, :environments,
         :fault_count, :unresolved_fault_count, :last_notice_at, :created_at,
-        :teams
+        :teams, :earliest_notice_at
 
       # Public: Build a new instance of Project
       #
@@ -24,6 +24,7 @@ module Honeybadger
         @fault_count = opts[:fault_count]
         @unresolved_fault_count = opts[:unresolved_fault_count]
         @last_notice_at = opts[:last_notice_at].nil? ? nil : DateTime.parse(opts[:last_notice_at])
+        @earliest_notice_at = opts[:earliest_notice_at].nil? ? nil : DateTime.parse(opts[:earliest_notice_at])
         @created_at = opts[:created_at].nil? ? nil : DateTime.parse(opts[:created_at])
       end
 

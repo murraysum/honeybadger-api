@@ -58,6 +58,10 @@ describe Honeybadger::Api::Project do
       expect(@project.last_notice_at).to eql(DateTime.parse("2012-01-01T00:02:00Z"))
     end
 
+    it "should have an earliest notice at" do
+      expect(@project.earliest_notice_at).to eql(DateTime.parse("2016-04-26T20:38:02.318434Z"))
+    end
+
     it "should have a created_at" do
       expect(@project.created_at).to eql(DateTime.parse("2012-01-01T00:01:00Z"))
     end

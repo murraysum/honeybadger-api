@@ -16,6 +16,9 @@ FactoryGirl.define do
       "integration",
       "production"
     ]
+    teams [
+      { :id => 1, :name => "Engineering" }
+    ]
     active true
     disable_public_links false
     fault_count 14

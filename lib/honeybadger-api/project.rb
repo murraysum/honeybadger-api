@@ -3,7 +3,8 @@ module Honeybadger
     class Project
 
       attr_reader :id, :name, :owner, :users, :token, :environments,
-        :fault_count, :unresolved_fault_count, :last_notice_at, :created_at
+        :fault_count, :unresolved_fault_count, :last_notice_at, :created_at,
+        :teams
 
       # Public: Build a new instance of Project
       #
@@ -17,6 +18,7 @@ module Honeybadger
         @users = opts[:users].collect { |user| User.new(user[:name], user[:email]) }
         @token = opts[:token]
         @environments = opts[:environments]
+        @teams = opts[:teams]
         @active = opts[:active]
         @disable_public_links = opts[:disable_public_links]
         @fault_count = opts[:fault_count]

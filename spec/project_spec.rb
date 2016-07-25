@@ -39,6 +39,13 @@ describe Honeybadger::Api::Project do
       expect(@project.environments).to eql(environments)
     end
 
+    it "should have a list of teams" do
+      teams = [
+        { :id => 1, :name => "Engineering" }
+      ]
+      expect(@project.teams).to eql(teams)
+    end
+
     it "should have a fault count" do
       expect(@project.fault_count).to eql(14)
     end

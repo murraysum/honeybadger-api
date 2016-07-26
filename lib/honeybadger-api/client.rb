@@ -43,7 +43,7 @@ module Honeybadger
       end
 
       def host
-        "https://api.honeybadger.io/v2/"
+        "https://app.honeybadger.io/v2/"
       end
     end
   end

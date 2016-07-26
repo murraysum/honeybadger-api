@@ -120,15 +120,13 @@ Honeybadger::Api::Fault.paginate(project_id)
 
 ### Notices
 ```
-# Find a notice
-Honeybadger::Api::Notice.find(project_id, fault_id, notice_id)
-
 # Find all the notices
 Honeybadger::Api::Notice.all(project_id, fault_id)
 
 # Retrieve a paginator for notices
 Honeybadger::Api::Notice.paginate(project_id, fault_id)
 ```
+
 ### Comments
 ```
 # Find a comment

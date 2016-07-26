@@ -108,20 +108,4 @@ describe Honeybadger::Api::Notice do
       Honeybadger::Api::Notice.paginate(@project_id, @fault_id, @filters)
     end
   end
-
-  describe "find" do
-    before :each do
-      @project_id = 1
-      @fault_id = 2
-      @notice_id = "5a24f938-a578-427d-a92b-d2f134d4af67"
-      @path = "projects/#{@project_id}/faults/#{@fault_id}/notices/#{@notice_id}"
-      @handler = Proc.new { |response| Notice.new(response) }
-      Honeybadger::Api::Notice.expects(:handler).returns(@handler)
-    end
-
-    it "should find a notice" do
-      Honeybadger::Api::Request.expects(:find).with(@path, @handler).once
-      Honeybadger::Api::Notice.find(@project_id, @fault_id, @notice_id)
-    end
-  end
 end

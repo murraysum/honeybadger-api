@@ -37,12 +37,6 @@ module Honeybadger
         Honeybadger::Api::Request.paginate(path, handler, filters)
       end
 
-      # Public: Find a notice on a fault for a project.
-      def self.find(project_id, fault_id, notice_id)
-        path = "projects/#{project_id}/faults/#{fault_id}/notices/#{notice_id}"
-        Honeybadger::Api::Request.find(path, handler)
-      end
-
       # Internal: The handler used to build objects from API responses.
       def self.handler
         Proc.new { |response| Notice.new(response) }

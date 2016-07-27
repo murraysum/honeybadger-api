@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Honeybadger::Api::Notice do
 
-  describe "initializing a new comment" do
+  describe "initializing a new notice" do
     before :all do
       @notice = FactoryGirl.build :notice
     end
@@ -12,7 +12,7 @@ describe Honeybadger::Api::Notice do
     end
 
     it "should have a url" do
-      expect(@notice.url).to eql("https://app.honeybadger.io/projects/1404/faults/2/5a24f938-a578-427d-a92b-d2f134d4af67")
+      expect(@notice.url).to eql("https://app.honeybadger.io/projects/1/faults/2/5a24f938-a578-427d-a92b-d2f134d4af67")
     end
 
     it "should have a fault identifier" do

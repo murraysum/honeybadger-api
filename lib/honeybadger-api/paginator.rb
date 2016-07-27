@@ -11,8 +11,7 @@ module Honeybadger
 
         @pages = {}
 
-        @filters.merge!({ :page => 1 }) if !@filters.has_key?(:page)
-        @current_page = @filters[:page]
+        @current_page = 1
 
         response = Honeybadger::Api.client.get(@path, @filters)
 

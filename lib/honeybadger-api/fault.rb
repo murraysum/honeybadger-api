@@ -43,6 +43,28 @@ module Honeybadger
         @resolved == true
       end
 
+      # Public: A hash comprised of all instance methods.
+      def to_h
+        {
+          :action => action,
+          :comments_count => comments_count,
+          :component => component,
+          :created_at => created_at,
+          :deploy_revision => deploy.revision,
+          :environment => environment,
+          :error_class => klass,
+          :error_message => message,
+          :id => id,
+          :ignored => ignored?,
+          :last_notice_at => last_notice_at,
+          :notices_count => notices_count,
+          :project_id => project_id,
+          :resolved => resolved?,
+          :tags => tags,
+          :url => url
+        }
+      end
+
       # Public: Find all faults for a given project.
       def self.all(project_id)
         path  = "projects/#{project_id}/faults"

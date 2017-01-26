@@ -6,7 +6,7 @@ A Ruby Library for the [Honeybadger Read API](https://www.honeybadger.io/documen
 
 Add this line to your application's Gemfile:
 
-    gem 'honeybadger-api'
+    gem "honeybadger-api"
 
 And then execute:
 
@@ -22,14 +22,14 @@ Or install it yourself as:
 Firstly require the library:
 
 ```
-require 'honeybadger-api'
+require "honeybadger-api"
 ```
 
 Then configure your personal API access token. Your personal API access token can be found on your [personal profile page](https://www.honeybadger.io/users/edit):
 
 ```
 Honeybadger::Api.configure do |c|
-  c.access_token = 'xxxxxxxxxxxxxxxxxxxx'
+  c.access_token = "xxxxxxxxxxxxxxxxxxxx"
 end
 ```
 

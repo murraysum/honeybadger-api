@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Honeybadger::Api::Outage do
 
-  describe "initializing a new site" do
+  describe "initializing a new outage" do
     before :all do
       @outage = FactoryGirl.build :outage
     end

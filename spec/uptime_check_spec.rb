@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Honeybadger::Api::UptimeCheck do
 
-  describe "initializing a new site" do
+  describe "initializing a new uptime check" do
     before :all do
       @uptime_check = FactoryGirl.build :uptime_check
     end

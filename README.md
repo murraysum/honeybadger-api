@@ -187,6 +187,15 @@ Honeybadger::Api::Site.all(project_id)
 Honeybadger::Api::Site.paginate(project_id)
 ```
 
+### Outages
+```
+# Find all the outages
+Honeybadger::Api::Outage.all(project_id, site_id)
+
+# Retrieve a paginator for outages
+Honeybadger::Api::Outage.paginate(project_id, site_id)
+```
+
 ### Uptime Checks
 ```
 # Find all the uptime checks

@@ -16,6 +16,7 @@ require "honeybadger-api/fault"
 require "honeybadger-api/notice"
 require "honeybadger-api/site"
 require "honeybadger-api/uptime_check"
+require "honeybadger-api/outage"
 
 module Honeybadger
   module Api

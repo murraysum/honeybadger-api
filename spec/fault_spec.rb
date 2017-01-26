@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Honeybadger::Api::Fault do
 
-  describe "initializing a new comment" do
+  describe "initializing a new fault" do
     before :all do
       @fault = FactoryGirl.build :fault
     end

@@ -132,10 +132,10 @@ Honeybadger::Api::Notice.paginate(project_id, fault_id)
 # Find a comment
 Honeybadger::Api::Comment.find(project_id, fault_id, comment_id)
 
-# Find all the comments 
+# Find all the comments
 Honeybadger::Api::Comment.all(project_id, fault_id)
 
-# Retrieve a paginator for comments 
+# Retrieve a paginator for comments
 Honeybadger::Api::Comment.paginate(project_id, fault_id)
 ```
 
@@ -159,20 +159,32 @@ Honeybadger::Api::TeamMember.find(team_id, team_member_id)
 # Find all the team members
 Honeybadger::Api::TeamMember.all(team_id)
 
-# Retrieve a paginator for team members 
+# Retrieve a paginator for team members
 Honeybadger::Api::TeamMember.paginate(team_id)
 ```
 
 ### Team Invitations
 ```
-# Find a team invitation 
+# Find a team invitation
 Honeybadger::Api::TeamInvitation.find(team_id, team_invitation_id)
 
-# Find all the team invitations 
+# Find all the team invitations
 Honeybadger::Api::TeamInvitation.all(team_id)
 
-# Retrieve a paginator for team invitations 
+# Retrieve a paginator for team invitations
 Honeybadger::Api::TeamInvitation.paginate(team_id)
+```
+
+### Sites
+```
+# Find a site
+Honeybadger::Api::Site.find(project_id, site_id)
+
+# Find all the sites
+Honeybadger::Api::Site.all(project_id)
+
+# Retrieve a paginator for sites
+Honeybadger::Api::Site.paginate(project_id)
 ```
 
 ## Contributing

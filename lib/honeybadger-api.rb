@@ -1,4 +1,4 @@
-require 'date'
+require "date"
 
 require "honeybadger-api/version"
 require "honeybadger-api/configuration"
@@ -14,6 +14,7 @@ require "honeybadger-api/comment"
 require "honeybadger-api/project"
 require "honeybadger-api/fault"
 require "honeybadger-api/notice"
+require "honeybadger-api/site"
 
 module Honeybadger
   module Api

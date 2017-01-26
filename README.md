@@ -187,6 +187,15 @@ Honeybadger::Api::Site.all(project_id)
 Honeybadger::Api::Site.paginate(project_id)
 ```
 
+### Uptime Checks
+```
+# Find all the uptime checks
+Honeybadger::Api::UptimeCheck.all(project_id, site_id)
+
+# Retrieve a paginator for uptime checks
+Honeybadger::Api::UptimeCheck.paginate(project_id, site_id)
+```
+
 ## Contributing
 
 1. Fork it

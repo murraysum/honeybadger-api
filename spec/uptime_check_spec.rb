@@ -38,7 +38,7 @@ describe Honeybadger::Api::UptimeCheck do
       Honeybadger::Api::UptimeCheck.all(@project_id, @site_id)
     end
   end
-  #
+
   describe "paginate" do
     before :each do
       @project_id = 1

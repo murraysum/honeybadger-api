@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::TeamInvitation do
   
@@ -71,7 +71,7 @@ describe Honeybadger::Api::TeamInvitation do
       @team_id = 1
       @path = "teams/#{@team_id}/team_invitations"
       @handler = Proc.new { |response| TeamInvitation.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::TeamInvitation.expects(:handler).returns(@handler)
     end
 

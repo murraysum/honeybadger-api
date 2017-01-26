@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Paginator do
 
   describe "next? and previous?" do
     before :all do
-      @client_stub = stub('client')
+      @client_stub = stub("client")
     end
 
     describe "when there is one page" do

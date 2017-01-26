@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::TeamMember do
 
@@ -85,7 +85,7 @@ describe Honeybadger::Api::TeamMember do
       @team_id = 1
       @path = "teams/#{@team_id}/team_members"
       @handler = Proc.new { |response| TeamMember.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::TeamMember.expects(:handler).returns(@handler)
     end
 

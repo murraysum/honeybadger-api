@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Team do
 
@@ -42,7 +42,7 @@ describe Honeybadger::Api::Team do
     before :each do
       @path = "teams"
       @handler = Proc.new { |response| Team.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Team.expects(:handler).returns(@handler)
     end
 

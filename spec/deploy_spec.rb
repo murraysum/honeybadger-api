@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Deploy do
   
@@ -55,7 +55,7 @@ describe Honeybadger::Api::Deploy do
       @project_id = 1
       @path = "projects/#{@project_id}/deploys"
       @handler = Proc.new { |response| Deploy.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Deploy.expects(:handler).returns(@handler)
     end
 

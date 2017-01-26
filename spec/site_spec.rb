@@ -63,7 +63,7 @@ describe Honeybadger::Api::Site do
       @project_id = 1
       @path = "projects/#{@project_id}/sites"
       @handler = Proc.new { |response| Site.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Site.expects(:handler).returns(@handler)
     end
 

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Notice do
 
@@ -99,7 +99,7 @@ describe Honeybadger::Api::Notice do
       @fault_id = 2
       @path = "projects/#{@project_id}/faults/#{@fault_id}/notices"
       @handler = Proc.new { |response| Notice.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Notice.expects(:handler).returns(@handler)
     end
 

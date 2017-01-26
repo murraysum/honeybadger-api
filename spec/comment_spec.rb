@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Comment do
 
@@ -65,7 +65,7 @@ describe Honeybadger::Api::Comment do
       @fault_id = 2
       @path = "projects/#{@project_id}/faults/#{@fault_id}/comments"
       @handler = Proc.new { |response| Comment.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Comment.expects(:handler).returns(@handler)
     end
 

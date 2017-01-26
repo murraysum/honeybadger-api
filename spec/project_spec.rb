@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Honeybadger::Api::Project do
 
@@ -140,7 +140,7 @@ describe Honeybadger::Api::Project do
     before :each do
       @path = "projects"
       @handler = Proc.new { |response| Project.new(response) }
-      @filters = { some_filter: 'value' }
+      @filters = { some_filter: "value" }
       Honeybadger::Api::Project.expects(:handler).returns(@handler)
     end
 

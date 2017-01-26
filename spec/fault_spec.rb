@@ -66,6 +66,10 @@ describe Honeybadger::Api::Fault do
     it "should have a deploy object" do
       expect(@fault.deploy).to_not be_nil
     end
+
+    it "should have a method to convert all its instance variables to a hash" do
+      expect(@fault.to_h.keys.sort).to eql([:action, :comments_count, :component, :created_at, :deploy_revision, :environment, :error_class, :error_message, :id, :ignored, :last_notice_at, :notices_count, :project_id, :resolved, :tags, :url])
+    end
   end
 
   describe "an ignored fault" do
